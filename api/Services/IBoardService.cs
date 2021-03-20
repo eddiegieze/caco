@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Caco.API.Model;
+using Caco.API.Models;
 
 namespace Caco.API.Services
 {
     public interface IBoardService
     {
-         Task<IEnumerable<Board>> ListBoardsAsync();
+         public Task<IEnumerable<Board>> ListBoardsAsync();
     }
 }

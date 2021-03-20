@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Caco.API.Model
+namespace Caco.API.Models
 {
     public class Card
     {
