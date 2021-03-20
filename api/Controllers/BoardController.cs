@@ -1,25 +1,30 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Caco.API.Model;
+using Caco.API.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using model;
 
-namespace api.Controllers
+namespace Caco.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
     public class BoardController : ControllerBase
     {
         private readonly ILogger<BoardController> _logger;
+        private readonly IBoardService _boardService;
 
-        public BoardController(ILogger<BoardController> logger)
+        public BoardController(ILogger<BoardController> logger, IBoardService boardService)
         {
             _logger = logger;
+            _boardService = boardService;
         }
 
         [HttpGet]
-        public IEnumerable<Board> Get()
+        public async Task<IEnumerable<Board>> GetAsync()
         {
-            return new List<Board> { new Board() };
+            var boards = await _boardService.ListBoardsAsync();
+            return boards;
         }
     }
 }
