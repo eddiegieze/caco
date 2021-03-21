@@ -1,5 +1,10 @@
+using Caco.API.Persistence.Contexts;
+using Caco.API.Persistence.Repositories;
+using Caco.API.Repositories;
+using Caco.API.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -25,6 +30,14 @@ namespace Caco.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "api", Version = "v1" });
             });
+
+            services.AddDbContext<AppDbContext>(options =>
+            {
+                options.UseInMemoryDatabase("board-api-in-memory");
+            });
+
+            services.AddScoped<IBoardRepository, BoardRepository>();
+            services.AddScoped<IBoardService, BoardService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
