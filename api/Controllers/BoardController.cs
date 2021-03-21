@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using AutoMapper;
 using Caco.API.Models;
+using Caco.API.Resources;
 using Caco.API.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -13,18 +15,22 @@ namespace Caco.API.Controllers
     {
         private readonly ILogger<BoardController> _logger;
         private readonly IBoardService _boardService;
+        private readonly IMapper _mapper;
 
-        public BoardController(ILogger<BoardController> logger, IBoardService boardService)
+        public BoardController(ILogger<BoardController> logger, IBoardService boardService, IMapper mapper)
         {
             _logger = logger;
             _boardService = boardService;
+            _mapper = mapper;
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Board>> GetAsync()
+        public async Task<IEnumerable<BoardResource>> GetAsync()
         {
             var boards = await _boardService.ListBoardsAsync();
-            return boards;
+            var resources = _mapper.Map<IEnumerable<Board>, IEnumerable<BoardResource>>(boards);
+            
+            return resources;
         }
     }
 }
