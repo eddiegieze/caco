@@ -35,13 +35,21 @@ namespace Caco.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostAsync([FromBody] SaveBoardResource boardResource)
+        public async Task<IActionResult> PostAsync([FromBody] SaveBoardResource saveBoardResource)
         {
-            if (!ModelState.IsValid) {
+            if (!ModelState.IsValid)
+            {
                 return BadRequest(ModelState.GetErrorMessages());
             }
 
-            var board = _mapper.Map<SaveBoardResource, Board>(boardResource);
+            var board = _mapper.Map<SaveBoardResource, Board>(saveBoardResource);
+            var result = await _boardService.SaveAsync(board);
+
+            if (!result.Success)
+                return BadRequest(result.Message);
+
+            var boardResource = _mapper.Map<Board, BoardResource>(result.Board);
+            return Ok(boardResource);
         }
     }
 }
