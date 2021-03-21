@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
+using Caco.API.Extensions;
 using Caco.API.Models;
 using Caco.API.Resources;
 using Caco.API.Services;
@@ -29,8 +30,18 @@ namespace Caco.API.Controllers
         {
             var boards = await _boardService.ListBoardsAsync();
             var resources = _mapper.Map<IEnumerable<Board>, IEnumerable<BoardResource>>(boards);
-            
+
             return resources;
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> PostAsync([FromBody] SaveBoardResource boardResource)
+        {
+            if (!ModelState.IsValid) {
+                return BadRequest(ModelState.GetErrorMessages());
+            }
+
+            var board = _mapper.Map<SaveBoardResource, Board>(boardResource);
         }
     }
 }
