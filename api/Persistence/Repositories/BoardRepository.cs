@@ -17,5 +17,10 @@ namespace Caco.API.Persistence.Repositories
         {
             return await _context.Boards.ToListAsync();
         }
+
+        public async Task AddAsync(Board board)
+        {
+            await _context.Boards.AddAsync(board);
+        }
     }
 }

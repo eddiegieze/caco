@@ -38,6 +38,7 @@ namespace Caco.API
 
             services.AddScoped<IBoardRepository, BoardRepository>();
             services.AddScoped<IBoardService, BoardService>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddAutoMapper(typeof(Startup));
         }
