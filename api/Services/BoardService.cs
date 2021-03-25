@@ -37,5 +37,30 @@ namespace Caco.API.Services
                 return new SaveBoardResponse($"An error occurred while saving the Board: {ex.Message}");
             }
         }
+
+        public async Task<SaveBoardResponse> UpdateAsync(int id, Board board)
+        {
+            var existingBoard = await _boardRepository.FindByIdAsync(id);
+
+            if (existingBoard == null)
+            {
+                return new SaveBoardResponse("Board not found.");
+            }
+
+            existingBoard.Name = board.Name;
+
+            try
+            {
+                _boardRepository.Update(existingBoard);
+                await _unitOfWork.CompleteAsync();
+
+                return new SaveBoardResponse(existingBoard);
+            }
+            catch (Exception ex)
+            {
+                // Do some logging stuff
+                return new SaveBoardResponse($"An error occurred when updating the Board: {ex.Message}");
+            }
+        }
     }
 }

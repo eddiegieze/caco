@@ -20,7 +20,7 @@ namespace Caco.API.Services.Communication
         { }
 
         /// <summary>
-        /// Creates am error response.
+        /// Creates an error response.
         /// </summary>
         /// <param name="message">Error message.</param>
         /// <returns>Response.</returns>

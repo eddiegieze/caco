@@ -59,7 +59,7 @@ namespace Caco.API.Controllers
                 return BadRequest(ModelState.GetErrorMessages());
 
             var board = _mapper.Map<SaveBoardResource, Board>(saveBoardResource);
-            var result = await _BoardService.UpdateAsync(id, board);
+            var result = await _boardService.UpdateAsync(id, board);
 
             if (!result.Success)
                 return BadRequest(result.Message);

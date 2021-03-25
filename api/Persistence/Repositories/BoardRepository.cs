@@ -22,5 +22,15 @@ namespace Caco.API.Persistence.Repositories
         {
             await _context.Boards.AddAsync(board);
         }
+
+        public async Task<Board> FindByIdAsync(int id)
+        {
+            return await _context.Boards.FindAsync(id);
+        }
+
+        public void Update(Board board)
+        {
+            _context.Boards.Update(board);
+        }
     }
 }

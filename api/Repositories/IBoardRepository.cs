@@ -8,5 +8,7 @@ namespace Caco.API.Repositories
     {
         Task<IEnumerable<Board>> ListAsync();
         Task AddAsync(Board board);
+        Task<Board> FindByIdAsync(int id);
+        void Update(Board board);
     }
 }
