@@ -67,5 +67,17 @@ namespace Caco.API.Controllers
             var boardResource = _mapper.Map<Board, BoardResource>(result.Board);
             return Ok(boardResource);
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteAsync(int id)
+        {
+            var result = await _boardService.DeleteAsync(id);
+
+            if (!result.Success)
+                return BadRequest(result.Message);
+
+            var boardResource = _mapper.Map<Board, BoardResource>(result.Board);
+            return Ok(boardResource);
+        }
     }
 }

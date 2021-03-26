@@ -23,28 +23,28 @@ namespace Caco.API.Services
             return await _boardRepository.ListAsync();
         }
 
-        public async Task<SaveBoardResponse> SaveAsync(Board Board)
+        public async Task<BoardResponse> SaveAsync(Board Board)
         {
             try
             {
                 await _boardRepository.AddAsync(Board);
                 await _unitOfWork.CompleteAsync();
 
-                return new SaveBoardResponse(Board);
+                return new BoardResponse(Board);
             }
             catch (Exception ex)
             {
-                return new SaveBoardResponse($"An error occurred while saving the Board: {ex.Message}");
+                return new BoardResponse($"An error occurred while saving the Board: {ex.Message}");
             }
         }
 
-        public async Task<SaveBoardResponse> UpdateAsync(int id, Board board)
+        public async Task<BoardResponse> UpdateAsync(int id, Board board)
         {
             var existingBoard = await _boardRepository.FindByIdAsync(id);
 
             if (existingBoard == null)
             {
-                return new SaveBoardResponse("Board not found.");
+                return new BoardResponse("Board not found.");
             }
 
             existingBoard.Name = board.Name;
@@ -54,12 +54,33 @@ namespace Caco.API.Services
                 _boardRepository.Update(existingBoard);
                 await _unitOfWork.CompleteAsync();
 
-                return new SaveBoardResponse(existingBoard);
+                return new BoardResponse(existingBoard);
             }
             catch (Exception ex)
             {
                 // Do some logging stuff
-                return new SaveBoardResponse($"An error occurred when updating the Board: {ex.Message}");
+                return new BoardResponse($"An error occurred when updating the Board: {ex.Message}");
+            }
+        }
+
+        public async Task<BoardResponse> DeleteAsync(int id)
+        {
+            var existingBoard = await _boardRepository.FindByIdAsync(id);
+
+            if (existingBoard == null)
+                return new BoardResponse("Board not found.");
+
+            try
+            {
+                _boardRepository.Remove(existingBoard);
+                await _unitOfWork.CompleteAsync();
+
+                return new BoardResponse(existingBoard);
+            }
+            catch (Exception ex)
+            {
+                // Do some logging stuff
+                return new BoardResponse($"An error occurred when deleting the Board: {ex.Message}");
             }
         }
     }

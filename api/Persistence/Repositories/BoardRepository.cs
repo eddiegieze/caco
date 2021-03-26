@@ -32,5 +32,10 @@ namespace Caco.API.Persistence.Repositories
         {
             _context.Boards.Update(board);
         }
+
+        public void Remove(Board board)
+        {
+            _context.Boards.Remove(board);
+        }
     }
 }

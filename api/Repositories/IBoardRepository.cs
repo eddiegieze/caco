@@ -10,5 +10,6 @@ namespace Caco.API.Repositories
         Task AddAsync(Board board);
         Task<Board> FindByIdAsync(int id);
         void Update(Board board);
+        void Remove(Board board);
     }
 }

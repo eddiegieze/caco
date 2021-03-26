@@ -2,11 +2,11 @@ using Caco.API.Models;
 
 namespace Caco.API.Services.Communication
 {
-    public class SaveBoardResponse : BaseResponse
+    public class BoardResponse : BaseResponse
     {
         public Board Board { get; private set; }
 
-        private SaveBoardResponse(bool success, string message, Board Board) : base(success, message)
+        private BoardResponse(bool success, string message, Board Board) : base(success, message)
         {
             this.Board = Board;
         }
@@ -16,7 +16,7 @@ namespace Caco.API.Services.Communication
         /// </summary>
         /// <param name="Board">Saved Board.</param>
         /// <returns>Response.</returns>
-        public SaveBoardResponse(Board Board) : this(true, string.Empty, Board)
+        public BoardResponse(Board Board) : this(true, string.Empty, Board)
         { }
 
         /// <summary>
@@ -24,7 +24,7 @@ namespace Caco.API.Services.Communication
         /// </summary>
         /// <param name="message">Error message.</param>
         /// <returns>Response.</returns>
-        public SaveBoardResponse(string message) : this(false, message, null)
+        public BoardResponse(string message) : this(false, message, null)
         { }
     }
 }
