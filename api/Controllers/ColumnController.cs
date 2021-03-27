@@ -26,9 +26,9 @@ namespace Caco.API.Controllers
         }
 
         [HttpGet("{boardId}")]
-        public async Task<IEnumerable<ColumnResource>> GetAsync(int boarId)
+        public async Task<IEnumerable<ColumnResource>> GetAsync(int boardId)
         {
-            var columns = await _columnService.ListColumnsAsync(boarId);
+            var columns = await _columnService.ListColumnsAsync(boardId);
             var resources = _mapper.Map<IEnumerable<Column>, IEnumerable<ColumnResource>>(columns);
 
             return resources;

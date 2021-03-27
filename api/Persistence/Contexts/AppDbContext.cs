@@ -37,7 +37,7 @@ namespace Caco.API.Persistence.Contexts
             builder.Entity<Column>().HasData
             (
                 new Column { Id = 100, Name = "Inbox", BoardId = 100 },
-                new Column { Id = 101, Name = "Inbox", BoardId = 100 }
+                new Column { Id = 101, Name = "Backlog", BoardId = 101 }
             );
 
             builder.Entity<Card>().ToTable("Cards");
@@ -47,8 +47,8 @@ namespace Caco.API.Persistence.Contexts
 
             builder.Entity<Card>().HasData
             (
-                new Card { Id = 100, Name = "Add more", ColumnId = 100 },
-                new Card { Id = 101, Name = "Add more", ColumnId = 100 }
+                new Card { Id = 100, Name = "My first card", ColumnId = 100 },
+                new Card { Id = 101, Name = "Add more", ColumnId = 101 }
             );
         }
     }
