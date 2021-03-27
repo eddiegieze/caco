@@ -9,6 +9,7 @@ namespace Caco.API.Mapping
         public ModelToResourceProfile()
         {
             CreateMap<Board, BoardResource>();
+            CreateMap<Column, ColumnResource>();
         }
     }
 }
