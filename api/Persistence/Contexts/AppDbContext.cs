@@ -44,11 +44,12 @@ namespace Caco.API.Persistence.Contexts
             builder.Entity<Card>().HasKey(p => p.Id);
             builder.Entity<Card>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
             builder.Entity<Card>().Property(p => p.Name).IsRequired().HasMaxLength(30);
+            builder.Entity<Card>().Property(p => p.Description).HasMaxLength(4000);
 
             builder.Entity<Card>().HasData
             (
-                new Card { Id = 100, Name = "My first card", ColumnId = 100 },
-                new Card { Id = 101, Name = "Add more", ColumnId = 101 }
+                new Card { Id = 100, Name = "My first card", Description = "I like cards.", ColumnId = 100 },
+                new Card { Id = 101, Name = "Add more", Description = "One card isn't enough.", ColumnId = 101 }
             );
         }
     }

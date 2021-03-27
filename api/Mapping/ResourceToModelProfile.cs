@@ -10,6 +10,7 @@ namespace Supermarket.API.Mapping
         {
             CreateMap<SaveBoardResource, Board>();
             CreateMap<SaveColumnResource, Column>();
+            CreateMap<SaveCardResource, Card>();
         }
     }
 }

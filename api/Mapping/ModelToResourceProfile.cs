@@ -10,6 +10,7 @@ namespace Caco.API.Mapping
         {
             CreateMap<Board, BoardResource>();
             CreateMap<Column, ColumnResource>();
+            CreateMap<Card, CardResource>();
         }
     }
 }
