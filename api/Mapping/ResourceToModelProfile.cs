@@ -9,6 +9,7 @@ namespace Supermarket.API.Mapping
         public ResourceToModelProfile()
         {
             CreateMap<SaveBoardResource, Board>();
+            CreateMap<SaveColumnResource, Column>();
         }
     }
 }
