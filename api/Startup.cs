@@ -40,6 +40,8 @@ namespace Caco.API
             services.AddScoped<IBoardService, BoardService>();
             services.AddScoped<IColumnRepository, ColumnRepository>();
             services.AddScoped<IColumnService, ColumnService>();
+            services.AddScoped<ICardRepository, CardRepository>();
+            services.AddScoped<ICardService, CardService>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddAutoMapper(typeof(Startup));
