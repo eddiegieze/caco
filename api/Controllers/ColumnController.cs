@@ -16,22 +16,28 @@ namespace Caco.API.Controllers
     {
         private readonly ILogger<ColumnController> _logger;
         private readonly IColumnService _columnService;
+        private readonly IBoardService _boardService;
         private readonly IMapper _mapper;
 
-        public ColumnController(ILogger<ColumnController> logger, IColumnService columnService, IMapper mapper)
+        public ColumnController(ILogger<ColumnController> logger, IColumnService columnService, IMapper mapper, IBoardService boardService)
         {
             _logger = logger;
             _columnService = columnService;
             _mapper = mapper;
+            _boardService = boardService;
         }
 
         [HttpGet("{boardId}")]
-        public async Task<IEnumerable<ColumnResource>> GetAsync(int boardId)
+        public async Task<IActionResult> GetAsync(int boardId)
         {
+            if (! await _boardService.Exists(boardId))
+            {
+                return NotFound("Board not found.");
+            }
             var columns = await _columnService.ListColumnsAsync(boardId);
             var resources = _mapper.Map<IEnumerable<Column>, IEnumerable<ColumnResource>>(columns);
 
-            return resources;
+            return Ok(resources);
         }
 
         [HttpPost("{boardId}")]

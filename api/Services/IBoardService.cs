@@ -7,9 +7,10 @@ namespace Caco.API.Services
 {
     public interface IBoardService
     {
-         public Task<IEnumerable<Board>> ListBoardsAsync();
-         Task<BoardResponse> SaveAsync(Board board);
-         Task<BoardResponse> UpdateAsync(int id, Board board);
-         Task<BoardResponse> DeleteAsync(int id);
+        Task<IEnumerable<Board>> ListBoardsAsync();
+        Task<BoardResponse> SaveAsync(Board board);
+        Task<BoardResponse> UpdateAsync(int id, Board board);
+        Task<BoardResponse> DeleteAsync(int id);
+        Task<bool> Exists(int id);
     }
 }

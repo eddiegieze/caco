@@ -7,9 +7,10 @@ namespace Caco.API.Services
 {
     public interface IColumnService
     {
-         public Task<IEnumerable<Column>> ListColumnsAsync(int boardId);
-         Task<ColumnResponse> SaveAsync(int boardId, Column column);
-         Task<ColumnResponse> UpdateAsync(int id, Column column);
-         Task<ColumnResponse> DeleteAsync(int id);
+        public Task<IEnumerable<Column>> ListColumnsAsync(int boardId);
+        Task<ColumnResponse> SaveAsync(int boardId, Column column);
+        Task<ColumnResponse> UpdateAsync(int id, Column column);
+        Task<ColumnResponse> DeleteAsync(int id);
+        Task<bool> Exists(int id);
     }
 }

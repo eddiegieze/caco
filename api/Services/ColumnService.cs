@@ -18,6 +18,11 @@ namespace Caco.API.Services
             _unitOfWork = unitOfWork;
         }
 
+        public async Task<bool> Exists(int id)
+        {
+            return await _columnRepository.FindByIdAsync(id) != null;
+        }
+
         public async Task<IEnumerable<Column>> ListColumnsAsync(int boardId)
         {
             return await _columnRepository.ListAsync(boardId);

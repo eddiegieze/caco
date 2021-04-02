@@ -16,22 +16,28 @@ namespace Caco.API.Controllers
     {
         private readonly ILogger<CardController> _logger;
         private readonly ICardService _cardService;
+        private readonly IColumnService _columnService;
         private readonly IMapper _mapper;
 
-        public CardController(ILogger<CardController> logger, ICardService cardService, IMapper mapper)
+        public CardController(ILogger<CardController> logger, ICardService cardService, IMapper mapper, IColumnService columnService)
         {
             _logger = logger;
             _cardService = cardService;
+            _columnService = columnService;
             _mapper = mapper;
         }
 
         [HttpGet("{columnId}")]
-        public async Task<IEnumerable<CardResource>> GetAsync(int columnId)
+        public async Task<IActionResult> GetAsync(int columnId)
         {
+            if (!await _columnService.Exists(columnId))
+            {
+                return NotFound("Column not found.");
+            }
             var cards = await _cardService.ListCardsAsync(columnId);
             var resources = _mapper.Map<IEnumerable<Card>, IEnumerable<CardResource>>(cards);
 
-            return resources;
+            return Ok(resources);
         }
 
         [HttpPost("{columnId}")]
