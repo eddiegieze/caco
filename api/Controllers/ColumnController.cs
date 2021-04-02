@@ -30,7 +30,7 @@ namespace Caco.API.Controllers
         [HttpGet("{boardId}")]
         public async Task<IActionResult> GetAsync(int boardId)
         {
-            if (! await _boardService.Exists(boardId))
+            if (!await _boardService.Exists(boardId))
             {
                 return NotFound("Board not found.");
             }
@@ -47,7 +47,10 @@ namespace Caco.API.Controllers
             {
                 return BadRequest(ModelState.GetErrorMessages());
             }
-
+            if (!await _boardService.Exists(boardId))
+            {
+                return NotFound("Board not found.");
+            }
             var column = _mapper.Map<SaveColumnResource, Column>(saveColumnResource);
             var result = await _columnService.SaveAsync(boardId, column);
 

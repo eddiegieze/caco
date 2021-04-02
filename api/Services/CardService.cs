@@ -49,6 +49,7 @@ namespace Caco.API.Services
             }
 
             existingCard.Name = card.Name;
+            existingCard.Description = card.Description;
 
             try
             {

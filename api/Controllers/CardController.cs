@@ -47,7 +47,10 @@ namespace Caco.API.Controllers
             {
                 return BadRequest(ModelState.GetErrorMessages());
             }
-
+            if (!await _columnService.Exists(columnId))
+            {
+                return NotFound("Column not found.");
+            }
             var card = _mapper.Map<SaveCardResource, Card>(saveCardResource);
             var result = await _cardService.SaveAsync(columnId, card);
 
