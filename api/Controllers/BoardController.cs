@@ -11,7 +11,7 @@ using Microsoft.Extensions.Logging;
 namespace Caco.API.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("boards")]
     public class BoardController : ControllerBase
     {
         private readonly ILogger<BoardController> _logger;

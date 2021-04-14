@@ -11,7 +11,7 @@ using Microsoft.Extensions.Logging;
 namespace Caco.API.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("columns")]
     public class ColumnController : ControllerBase
     {
         private readonly ILogger<ColumnController> _logger;

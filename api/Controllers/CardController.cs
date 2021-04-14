@@ -11,7 +11,7 @@ using Microsoft.Extensions.Logging;
 namespace Caco.API.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("cards")]
     public class CardController : ControllerBase
     {
         private readonly ILogger<CardController> _logger;
