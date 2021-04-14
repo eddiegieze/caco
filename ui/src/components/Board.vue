@@ -1,10 +1,10 @@
 <template>
-    <div id="dashboard">
-        <h1 class="h1">Boards</h1>
+    <div id="board">
+        <h1 class="h1">Columns</h1>
         <div class="main">
             <ul>
-                <li v-for="board in boards" :key="board">
-                    {{ board.name }} ({{ board.id }})
+                <li v-for="column in columns" :key="column">
+                    {{ column.name }}
                 </li>
             </ul>
         </div>
@@ -20,15 +20,15 @@
 </style>
 
 <script>
-import api from "@/BoardAPIService";
+import api from "@/ColumnAPIService";
 export default {
     data() {
         return {
-            boards: [],
+            columns: [],
         };
     },
     async created() {
-        this.boards = await api.getAll();
+        this.columns = await api.getAll();
     },
 };
 </script>
