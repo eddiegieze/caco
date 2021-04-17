@@ -11,20 +11,20 @@ export default {
             method,
             url: resource,
             data,
-        }).then(req => {
-            return req.data
-        })
+        }).then((req) => {
+            return req.data;
+        });
     },
     getAll(boardId) {
-        return this.execute("get", `/${boardId}`)
+        return this.execute("get", `/${boardId}`);
     },
     create(boardId, data) {
-        return this.execute("post", `/${boardId}`, data)
+        return this.execute("post", `/${boardId}`, data);
     },
     update(id, data) {
-        return this.execute("put", `/${id}`, data)
+        return this.execute("put", `/${id}`, data);
     },
     delete(id) {
-        return this.execute("delete", `/${id}`)
-    }
+        return this.execute("delete", `/${id}`);
+    },
 };
