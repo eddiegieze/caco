@@ -1,11 +1,9 @@
 <template>
     <div id="column">
-        <h1 class="h1">Cards</h1>
         <div class="main">
             <ul>
-                <li v-for="card in cards" :key="card">
+                <li v-for="card in cards" :key="card.id">
                     {{ card.name }}
-                    <Card :card="card" />
                 </li>
             </ul>
         </div>
@@ -22,7 +20,6 @@
 
 <script>
 import api from "@/CardAPIService";
-import Card from "../components/Card";
 export default {
     data() {
         return {
@@ -31,9 +28,6 @@ export default {
     },
     async created() {
         this.cards = await api.getAll(this.columnId);
-    },
-    components: {
-        Card,
     },
     props: {
         columnId: Number,

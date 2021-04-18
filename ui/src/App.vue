@@ -6,8 +6,19 @@
 </template>
 
 <style lang="scss">
+html,
 body {
-    background-color: #c5d7e9;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    padding: 0;
+}
+
+li {
+    list-style-type: none;
 }
 
 #app {
@@ -16,11 +27,14 @@ body {
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
+    background-color: #c5d7e9;
+    height: 100%;
 }
 
 #nav {
-    padding: 30px;
-
+    padding: 2em;
+    height: 1em;
+    background-color: white;
     a {
         font-weight: bold;
         color: #2c3e50;

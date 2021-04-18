@@ -25,10 +25,6 @@
     border: 0.1em solid;
     border-radius: 0.3em;
 }
-
-.boardlist li {
-    list-style-type: none;
-}
 </style>
 
 <script>

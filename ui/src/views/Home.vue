@@ -8,6 +8,9 @@
 </template>
 
 <style lang="scss">
+.home {
+    height: 70%;
+}
 #mainboards {
     width: 50em;
     margin: auto;
