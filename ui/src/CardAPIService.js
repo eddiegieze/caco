@@ -11,9 +11,9 @@ export default {
             method,
             url: resource,
             data,
-        }).then(req => {
-            return req.data
-        })
+        }).then((req) => {
+            return req.data;
+        });
     },
     getAll(columnId) {
         return this.execute("get", `/${columnId}`);

@@ -1,13 +1,7 @@
 <template>
     <div id="board">
-        <h1 class="h1">Card</h1>
-        <div class="main">
-            <ul>
-                <li v-for="prop in card" :key="prop">
-                    {{ prop }}
-                </li>
-            </ul>
-        </div>
+        <h1 class="h1">{{ card.name }}</h1>
+        <p>{{ card.description }}</p>
     </div>
 </template>
 
