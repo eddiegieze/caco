@@ -2,9 +2,16 @@
     <div id="dashboard">
         <h1 class="h1">Boards</h1>
         <div class="main">
-            <ul>
+            <ul class="boardlist">
                 <li v-for="board in boards" :key="board">
-                    {{ board.name }} ({{ board.id }})
+                    <router-link
+                        :to="{
+                            name: 'board',
+                            params: { boardId: board.id },
+                        }"
+                    >
+                        {{ board.name }}
+                    </router-link>
                 </li>
             </ul>
         </div>

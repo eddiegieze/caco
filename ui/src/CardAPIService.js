@@ -16,15 +16,15 @@ export default {
         })
     },
     getAll(columnId) {
-        return this.execute("get", `/${columnId}`)
+        return this.execute("get", `/${columnId}`);
     },
     create(columnId, data) {
-        return this.execute("post", `/${columnId}`, data)
+        return this.execute("post", `/${columnId}`, data);
     },
     update(id, data) {
-        return this.execute("put", `/${id}`, data)
+        return this.execute("put", `/${id}`, data);
     },
     delete(id) {
-        return this.execute("delete", `/${id}`)
-    }
+        return this.execute("delete", `/${id}`);
+    },
 };

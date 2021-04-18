@@ -5,6 +5,7 @@
             <ul>
                 <li v-for="column in columns" :key="column">
                     {{ column.name }}
+                    <Column :columnId="column.id" />
                 </li>
             </ul>
         </div>
@@ -21,6 +22,7 @@
 
 <script>
 import api from "@/ColumnAPIService";
+import Column from "../components/Column";
 export default {
     data() {
         return {
@@ -28,7 +30,10 @@ export default {
         };
     },
     async created() {
-        this.columns = await api.getAll();
+        this.columns = await api.getAll(this.$route.params.boardId);
+    },
+    components: {
+        Column,
     },
 };
 </script>
