@@ -1,28 +1,33 @@
 <template>
-    <div id="dashboard">
+    <div id="boards">
         <h1 class="h1">Boards</h1>
-        <div class="main">
-            <ul class="boardlist">
-                <li v-for="board in boards" :key="board">
-                    <router-link
-                        :to="{
-                            name: 'board',
-                            params: { boardId: board.id },
-                        }"
-                    >
-                        {{ board.name }}
-                    </router-link>
-                </li>
-            </ul>
-        </div>
+        <ul class="boardlist">
+            <li v-for="board in boards" :key="board.id">
+                <router-link
+                    :to="{
+                        name: 'board',
+                        params: { boardId: board.id },
+                    }"
+                >
+                    {{ board.name }}
+                </router-link>
+            </li>
+        </ul>
     </div>
 </template>
 
 <style lang="scss">
-.main {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.boardlist {
+    width: 15em;
+    margin: auto;
+    background-color: #bcddff;
+    padding: 0;
+    border: 0.1em solid;
+    border-radius: 0.3em;
+}
+
+.boardlist li {
+    list-style-type: none;
 }
 </style>
 

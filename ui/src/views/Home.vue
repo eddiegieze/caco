@@ -1,9 +1,18 @@
 <template>
     <div class="home">
-        <h1>Welcome home.</h1>
-        <Boards />
+        <h1>Welcome to Cards & Columns</h1>
+        <div id="mainboards">
+            <Boards />
+        </div>
     </div>
 </template>
+
+<style lang="scss">
+#mainboards {
+    width: 50em;
+    margin: auto;
+}
+</style>
 
 <script>
 import Boards from "../components/Boards";
