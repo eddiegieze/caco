@@ -22,9 +22,9 @@
 </style>
 
 <script>
-import api from "@/ColumnAPIService";
-import Column from "../components/Column";
-import Boards from "../components/Boards";
+import api from "../ColumnAPIService.js";
+import Column from "../components/Column.vue";
+import Boards from "../components/Boards.vue";
 export default {
     data() {
         return {

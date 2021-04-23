@@ -18,7 +18,7 @@
 </style>
 
 <script>
-import Boards from "../components/Boards";
+import Boards from "../components/Boards.vue";
 
 export default {
     name: "Home",

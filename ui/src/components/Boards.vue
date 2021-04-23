@@ -28,7 +28,7 @@
 </style>
 
 <script>
-import api from "@/BoardAPIService";
+import api from "../BoardAPIService.js";
 export default {
     data() {
         return {
