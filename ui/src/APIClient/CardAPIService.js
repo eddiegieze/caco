@@ -1,8 +1,7 @@
 import axios from "axios";
 
 const client = axios.create({
-    baseURL: "http://localhost:5000/columns",
-    json: true,
+    baseURL: "http://localhost:5000/cards",
 });
 
 export default {
@@ -15,11 +14,11 @@ export default {
             return req.data;
         });
     },
-    getAll(boardId) {
-        return this.execute("get", `/${boardId}`);
+    getAll(columnId) {
+        return this.execute("get", `/${columnId}`);
     },
-    create(boardId, data) {
-        return this.execute("post", `/${boardId}`, data);
+    create(columnId, data) {
+        return this.execute("post", `/${columnId}`, data);
     },
     update(id, data) {
         return this.execute("put", `/${id}`, data);

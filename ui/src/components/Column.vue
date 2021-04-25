@@ -19,7 +19,7 @@
 </style>
 
 <script>
-import api from "../CardAPIService.js";
+import api from "../APIClient/CardAPIService.js";
 export default {
     data() {
         return {
