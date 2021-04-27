@@ -5,6 +5,7 @@
                 <li v-for="card in cards" :key="card.id">
                     {{ card.name }}
                 </li>
+                <li><CardFormSimple @card-added="addCard" /></li>
             </ul>
         </div>
     </div>
@@ -20,6 +21,7 @@
 
 <script>
 import api from "../APIClient/CardAPIService.js";
+import CardFormSimple from "./CardFormSimple.vue";
 export default {
     data() {
         return {
@@ -31,6 +33,14 @@ export default {
     },
     props: {
         columnId: Number,
+    },
+    components: {
+        CardFormSimple,
+    },
+    methods: {
+        addCard(cardName) {
+            this.cards.push({ name: cardName });
+        },
     },
 };
 </script>
