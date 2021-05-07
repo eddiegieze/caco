@@ -38,8 +38,9 @@ export default {
         CardFormSimpleAdd,
     },
     methods: {
-        addCard(cardName) {
-            this.cards.push({ name: cardName });
+        async addCard(cardName) {
+            await api.create(this.columnId, { name: cardName });
+            this.cards = await api.getAll(this.columnId);
         },
     },
 };
