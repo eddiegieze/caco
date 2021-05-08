@@ -26,22 +26,26 @@ li {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
-    color: #2c3e50;
-    background-color: #c5d7e9;
+    color: #7ab1e9;
+    background-color: #000000;
     height: 100%;
 }
 
 #nav {
     padding: 2em;
     height: 1em;
-    background-color: white;
+    background-color: rgb(22, 71, 90);
     a {
         font-weight: bold;
-        color: #2c3e50;
+        color: #76b5f5;
 
         &.router-link-exact-active {
             color: #42b983;
         }
     }
+}
+.column {
+    margin: 0.5em;
+    background-color: #1e2d3b;
 }
 </style>

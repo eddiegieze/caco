@@ -1,7 +1,7 @@
 <template>
     <div class="main">
         <Boards />
-        <div v-for="column in columns" :key="column.id">
+        <div v-for="column in columns" :key="column.id" class="column">
             {{ column.name }}
             <Column :columnId="column.id" />
         </div>
@@ -15,7 +15,6 @@
     justify-content: flex-start;
     height: calc(100% - 5em);
     div {
-        border: solid 0.1em rgb(150, 148, 148);
         border-radius: 0.3em;
     }
 }
