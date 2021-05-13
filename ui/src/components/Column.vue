@@ -13,7 +13,7 @@
                     </router-link>
                 </li>
                 <li><CardFormSimpleAdd @card-added="addCard" /></li>
-                <router-view></router-view>
+                <router-view @card-edited="editCard"></router-view>
             </ul>
         </div>
     </div>
@@ -48,6 +48,9 @@ export default {
     methods: {
         async addCard(cardName) {
             await api.createCard(this.columnId, { name: cardName });
+            this.cards = await api.getCards(this.columnId);
+        },
+        async editCard() {
             this.cards = await api.getCards(this.columnId);
         },
     },

@@ -1,7 +1,23 @@
 <template>
     <div class="glasspane" @click="close">
-        <div class="card-modal">
-            <h1 class="h1">{{ card.name }}</h1>
+        <div class="card-modal" @click.stop v-if="card !== null">
+            <h1 class="h1">
+                <form @submit.prevent="onSubmit" v-if="editing">
+                    <input
+                        type="text"
+                        id="card-name"
+                        name="edit-card-name"
+                        autocomplete="off"
+                        v-model.lazy.trim="card.name"
+                    />
+                    <button class="cancel-button" @click="onCancel" />
+                    <button class="ok-button" type="submit" />
+                </form>
+                <span v-else>
+                    {{ card.name }}
+                    <button class="edit-button" @click="onEdit" />
+                </span>
+            </h1>
             <p>{{ card.description }}</p>
         </div>
     </div>
@@ -33,6 +49,27 @@
         padding: 3em;
         color: black;
     }
+
+    button {
+        height: 2em;
+        width: 2em;
+        margin-left: 0.3em;
+        background-color: inherit;
+        border: 0;
+    }
+
+    form {
+        display: inline;
+    }
+    .cancel-button {
+        background-image: url("/icons/cancel-white.svg");
+    }
+    .ok-button {
+        background-image: url("/icons/ok-white.svg");
+    }
+    .edit-button {
+        background-image: url("/icons/edit-white.svg");
+    }
 }
 </style>
 
@@ -42,6 +79,7 @@ export default {
     data() {
         return {
             card: null,
+            editing: false,
         };
     },
     async created() {
@@ -59,6 +97,22 @@ export default {
                 name: "board",
                 params: { boardId: this.$route.params.boardId },
             });
+        },
+        onEdit() {
+            this.editing = true;
+        },
+        async onCancel() {
+            this.editing = false;
+            await this.fetchData();
+        },
+        async onSubmit() {
+            await api.update(this.$route.params.cardId, {
+                name: this.card.name,
+                description: this.card.description,
+            });
+            this.$emit("card-edited");
+            await this.fetchData();
+            this.editing = false;
         },
     },
 };
