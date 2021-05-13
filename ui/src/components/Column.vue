@@ -13,7 +13,7 @@
                     </router-link>
                 </li>
                 <li><CardFormSimpleAdd @card-added="addCard" /></li>
-                <li><router-view></router-view></li>
+                <router-view></router-view>
             </ul>
         </div>
     </div>
