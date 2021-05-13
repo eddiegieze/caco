@@ -3,9 +3,17 @@
         <div class="main">
             <ul>
                 <li v-for="card in cards" :key="card.id">
-                    {{ card.name }}
+                    <router-link
+                        :to="{
+                            name: 'card',
+                            params: { cardId: card.id },
+                        }"
+                    >
+                        {{ card.name }}
+                    </router-link>
                 </li>
                 <li><CardFormSimpleAdd @card-added="addCard" /></li>
+                <li><router-view></router-view></li>
             </ul>
         </div>
     </div>
@@ -20,7 +28,7 @@
 </style>
 
 <script>
-import api from "../APIClient/CardAPIService.js";
+import api from "../APIClient/ColumnAPIService.js";
 import CardFormSimpleAdd from "./CardFormSimpleAdd.vue";
 export default {
     data() {
@@ -29,7 +37,7 @@ export default {
         };
     },
     async created() {
-        this.cards = await api.getAll(this.columnId);
+        this.cards = await api.getCards(this.columnId);
     },
     props: {
         columnId: Number,
@@ -39,8 +47,8 @@ export default {
     },
     methods: {
         async addCard(cardName) {
-            await api.create(this.columnId, { name: cardName });
-            this.cards = await api.getAll(this.columnId);
+            await api.createCard(this.columnId, { name: cardName });
+            this.cards = await api.getCards(this.columnId);
         },
     },
 };

@@ -14,11 +14,8 @@ export default {
             return req.data;
         });
     },
-    getAll(columnId) {
-        return this.execute("get", `/${columnId}`);
-    },
-    create(columnId, data) {
-        return this.execute("post", `/${columnId}`, data);
+    get(cardId) {
+        return this.execute("get", `/${cardId}`);
     },
     update(id, data) {
         return this.execute("put", `/${id}`, data);

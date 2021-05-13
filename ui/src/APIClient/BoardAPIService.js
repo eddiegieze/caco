@@ -26,4 +26,10 @@ export default {
     delete(id) {
         return this.execute("delete", `/${id}`);
     },
+    getColumns(id) {
+        return this.execute("get", `/${id}/columns`);
+    },
+    createColumn(id, data) {
+        return this.execute("post", `/${id}/columns`, data);
+    },
 };

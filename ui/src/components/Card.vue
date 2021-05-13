@@ -1,23 +1,30 @@
 <template>
-    <div id="board">
+    <div class="card">
         <h1 class="h1">{{ card.name }}</h1>
         <p>{{ card.description }}</p>
     </div>
 </template>
 
-<style lang="scss">
-.main {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-</style>
+<style lang="scss"></style>
 
 <script>
-//import api from "@/CardAPIService";
+import api from "../APIClient/CardAPIService.js";
 export default {
-    props: {
-        card: Object,
+    data() {
+        return {
+            card: {},
+        };
+    },
+    async created() {
+        this.fetchData();
+    },
+    watch: {
+        $route: "fetchData",
+    },
+    methods: {
+        async fetchData() {
+            this.card = await api.get(this.$route.params.cardId);
+        },
     },
 };
 </script>

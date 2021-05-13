@@ -21,7 +21,7 @@
 </style>
 
 <script>
-import api from "../APIClient/ColumnAPIService.js";
+import api from "../APIClient/BoardAPIService.js";
 import Column from "./Column.vue";
 import Boards from "./Boards.vue";
 export default {
@@ -38,7 +38,7 @@ export default {
     },
     methods: {
         async fetchData() {
-            this.columns = await api.getAll(this.$route.params.boardId);
+            this.columns = await api.getColumns(this.$route.params.boardId);
         },
     },
     components: {

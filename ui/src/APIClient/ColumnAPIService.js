@@ -14,16 +14,16 @@ export default {
             return req.data;
         });
     },
-    getAll(boardId) {
-        return this.execute("get", `/${boardId}`);
-    },
-    create(boardId, data) {
-        return this.execute("post", `/${boardId}`, data);
-    },
     update(id, data) {
         return this.execute("put", `/${id}`, data);
     },
     delete(id) {
         return this.execute("delete", `/${id}`);
+    },
+    getCards(id) {
+        return this.execute("get", `/${id}/cards`);
+    },
+    createCard(id, data) {
+        return this.execute("post", `/${id}/cards`, data);
     },
 };

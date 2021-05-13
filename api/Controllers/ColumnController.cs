@@ -16,49 +16,15 @@ namespace Caco.API.Controllers
     {
         private readonly ILogger<ColumnController> _logger;
         private readonly IColumnService _columnService;
-        private readonly IBoardService _boardService;
+        private readonly ICardService _cardService;
         private readonly IMapper _mapper;
 
-        public ColumnController(ILogger<ColumnController> logger, IColumnService columnService, IMapper mapper, IBoardService boardService)
+        public ColumnController(ILogger<ColumnController> logger, IColumnService columnService, IMapper mapper, ICardService cardService)
         {
             _logger = logger;
             _columnService = columnService;
+            _cardService = cardService;
             _mapper = mapper;
-            _boardService = boardService;
-        }
-
-        [HttpGet("{boardId}")]
-        public async Task<IActionResult> GetAsync(int boardId)
-        {
-            if (!await _boardService.Exists(boardId))
-            {
-                return NotFound("Board not found.");
-            }
-            var columns = await _columnService.ListColumnsAsync(boardId);
-            var resources = _mapper.Map<IEnumerable<Column>, IEnumerable<ColumnResource>>(columns);
-
-            return Ok(resources);
-        }
-
-        [HttpPost("{boardId}")]
-        public async Task<IActionResult> PostAsync(int boardId, [FromBody] SaveColumnResource saveColumnResource)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState.GetErrorMessages());
-            }
-            if (!await _boardService.Exists(boardId))
-            {
-                return NotFound("Board not found.");
-            }
-            var column = _mapper.Map<SaveColumnResource, Column>(saveColumnResource);
-            var result = await _columnService.SaveAsync(boardId, column);
-
-            if (!result.Success)
-                return BadRequest(result.Message);
-
-            var columnResource = _mapper.Map<Column, ColumnResource>(result.Column);
-            return Ok(columnResource);
         }
 
         [HttpPut("{id}")]
@@ -87,6 +53,40 @@ namespace Caco.API.Controllers
 
             var columnResource = _mapper.Map<Column, ColumnResource>(result.Column);
             return Ok(columnResource);
+        }
+
+        [HttpGet("{id}/cards")]
+        public async Task<IActionResult> GetAsync(int id)
+        {
+            if (!await _columnService.Exists(id))
+            {
+                return NotFound("Column not found.");
+            }
+            var cards = await _cardService.ListCardsAsync(id);
+            var resources = _mapper.Map<IEnumerable<Card>, IEnumerable<CardResource>>(cards);
+
+            return Ok(resources);
+        }
+
+        [HttpPost("{id}/cards")]
+        public async Task<IActionResult> PostAsync(int id, [FromBody] SaveCardResource saveCardResource)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState.GetErrorMessages());
+            }
+            if (!await _columnService.Exists(id))
+            {
+                return NotFound("Column not found.");
+            }
+            var card = _mapper.Map<SaveCardResource, Card>(saveCardResource);
+            var result = await _cardService.SaveAsync(id, card);
+
+            if (!result.Success)
+                return BadRequest(result.Message);
+
+            var cardResource = _mapper.Map<Card, CardResource>(result.Card);
+            return Ok(cardResource);
         }
     }
 }

@@ -16,49 +16,22 @@ namespace Caco.API.Controllers
     {
         private readonly ILogger<CardController> _logger;
         private readonly ICardService _cardService;
-        private readonly IColumnService _columnService;
         private readonly IMapper _mapper;
 
-        public CardController(ILogger<CardController> logger, ICardService cardService, IMapper mapper, IColumnService columnService)
+        public CardController(ILogger<CardController> logger, ICardService cardService, IMapper mapper)
         {
             _logger = logger;
             _cardService = cardService;
-            _columnService = columnService;
             _mapper = mapper;
         }
 
-        [HttpGet("{columnId}")]
-        public async Task<IActionResult> GetAsync(int columnId)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetAsync(int id)
         {
-            if (!await _columnService.Exists(columnId))
-            {
-                return NotFound("Column not found.");
-            }
-            var cards = await _cardService.ListCardsAsync(columnId);
-            var resources = _mapper.Map<IEnumerable<Card>, IEnumerable<CardResource>>(cards);
+            var card = await _cardService.GetAsync(id);
+            var resource = _mapper.Map<Card, CardResource>(card);
 
-            return Ok(resources);
-        }
-
-        [HttpPost("{columnId}")]
-        public async Task<IActionResult> PostAsync(int columnId, [FromBody] SaveCardResource saveCardResource)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState.GetErrorMessages());
-            }
-            if (!await _columnService.Exists(columnId))
-            {
-                return NotFound("Column not found.");
-            }
-            var card = _mapper.Map<SaveCardResource, Card>(saveCardResource);
-            var result = await _cardService.SaveAsync(columnId, card);
-
-            if (!result.Success)
-                return BadRequest(result.Message);
-
-            var cardResource = _mapper.Map<Card, CardResource>(result.Card);
-            return Ok(cardResource);
+            return Ok(resource);
         }
 
         [HttpPut("{id}")]

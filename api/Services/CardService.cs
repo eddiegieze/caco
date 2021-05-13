@@ -22,6 +22,10 @@ namespace Caco.API.Services
         {
             return await _cardRepository.ListAsync(columnId);
         }
+        public async Task<Card> GetAsync(int cardId)
+        {
+            return await _cardRepository.FindByIdAsync(cardId);
+        }
 
         public async Task<CardResponse> SaveAsync(int columnId, Card card)
         {
