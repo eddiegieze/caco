@@ -20,13 +20,13 @@
 .boardlist {
     width: 15em;
     margin: auto;
-    background-color: #183757;
     padding: 0;
 }
 li {
     border: 0.1em solid;
     border-radius: 0.3em;
     margin: 0.3em;
+    background-color: #183757;
 }
 a {
     color: #7ab1e9;
