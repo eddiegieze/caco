@@ -21,7 +21,10 @@
                         />
                     </div>
                     <div class="button-bar" v-else>
-                        <button class="filler-button" />
+                        <button
+                            class="delete-button"
+                            @click.prevent="onDelete"
+                        />
                         <button class="edit-button" @click.prevent="onEdit" />
                     </div>
                 </h1>
@@ -89,10 +92,6 @@
         cursor: pointer;
     }
 
-    .filler-button {
-        visibility: hidden;
-    }
-
     input,
     textarea {
         background-color: inherit;
@@ -137,6 +136,9 @@
     .edit-button {
         background-image: url("/icons/edit-white.svg");
     }
+    .delete-button {
+        background-image: url("/icons/delete-white.svg");
+    }
 }
 </style>
 
@@ -171,6 +173,11 @@ export default {
         async onCancel() {
             this.editing = false;
             await this.fetchData();
+        },
+        async onDelete() {
+            await api.delete(this.$route.params.cardId);
+            this.$emit("card-edited");
+            this.close();
         },
         async onSubmit() {
             await api.update(this.$route.params.cardId, {
