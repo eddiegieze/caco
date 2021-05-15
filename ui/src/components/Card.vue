@@ -1,12 +1,11 @@
 <template>
     <div class="glasspane" @click="close">
-        <div class="card-modal" @click.stop v-if="card !== null">
-            <form @submit.prevent="onSubmit">
+        <form @submit.prevent="onSubmit">
+            <div class="card-modal" @click.stop v-if="card !== null">
                 <h1 class="h1">
                     <input
                         type="text"
-                        id="card-name"
-                        name="edit-card-name"
+                        name="card-name"
                         autocomplete="off"
                         v-model.lazy.trim="card.name"
                         v-if="editing"
@@ -15,20 +14,27 @@
                         {{ card.name }}
                     </span>
                     <div class="button-bar" v-if="editing">
+                        <button class="ok-button" type="submit" />
                         <button
                             class="cancel-button"
                             @click.prevent="onCancel"
                         />
-                        <button class="ok-button" type="submit" />
                     </div>
                     <div class="button-bar" v-else>
                         <button class="filler-button" />
                         <button class="edit-button" @click.prevent="onEdit" />
                     </div>
                 </h1>
-                <p>{{ card.description }}</p>
-            </form>
-        </div>
+                <div class="card-contents">
+                    <textarea
+                        autocomplete="off"
+                        v-model.lazy.trim="card.description"
+                        v-if="editing"
+                    ></textarea>
+                    <p v-else>{{ card.description }}</p>
+                </div>
+            </div>
+        </form>
     </div>
 </template>
 
@@ -45,8 +51,10 @@
     align-items: center;
 }
 .card-modal {
-    width: 60%;
-
+    width: 60vw;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
     h1 {
         background-color: rgb(46, 137, 255);
         margin: 0;
@@ -63,21 +71,13 @@
         }
 
         input {
-            padding-top: 0.15em;
+            padding-top: 0.18em;
         }
 
         span {
             border: 0.05em solid;
             border-color: rgb(46, 137, 255);
         }
-    }
-    p {
-        background-color: rgb(158, 194, 241);
-        margin: 0;
-        padding: 0.6em;
-        text-align: left;
-        color: black;
-        min-height: 10em;
     }
 
     button {
@@ -93,11 +93,36 @@
         visibility: hidden;
     }
 
-    input {
+    input,
+    textarea {
         background-color: inherit;
         color: inherit;
         font: inherit;
         border: 0.05em solid black;
+    }
+
+    textarea {
+        resize: none;
+        width: 99%;
+        height: 98%;
+    }
+
+    p {
+        margin: 0.22em 0 0 0.15em;
+    }
+
+    .card-contents {
+        background-color: rgb(158, 194, 241);
+        margin: 0;
+        padding: 0.6em;
+        text-align: left;
+        color: black;
+        border-radius: 0;
+        flex-grow: 1;
+
+        p {
+            white-space: pre-line;
+        }
     }
 
     form {
