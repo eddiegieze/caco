@@ -66,6 +66,7 @@
         color: white;
         height: 1.3em;
         display: flex;
+        border-radius: 0.3em 0.3em 0 0;
 
         span,
         input {
@@ -117,7 +118,7 @@
         padding: 1em;
         text-align: left;
         color: black;
-        border-radius: 0;
+        border-radius: 0em 0em 0.3em 0.3em;
         flex-grow: 1;
 
         p {
@@ -172,7 +173,9 @@ export default {
             this.editing = true;
             this.$nextTick(() => {
                 var input = this.$refs.cardName;
+                // @ts-ignore
                 input.focus();
+                // @ts-ignore
                 input.select();
             });
         },

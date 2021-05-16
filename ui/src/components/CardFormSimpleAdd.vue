@@ -60,6 +60,7 @@ export default {
         onAdd() {
             this.editing = true;
             this.$nextTick(() => {
+                // @ts-ignore
                 this.$refs.newCardInput.focus();
             });
         },
