@@ -175,9 +175,11 @@ export default {
             await this.fetchData();
         },
         async onDelete() {
-            await api.delete(this.$route.params.cardId);
-            this.$emit("card-edited");
-            this.close();
+            if (confirm("Are you sure?")) {
+                await api.delete(this.$route.params.cardId);
+                this.$emit("card-edited");
+                this.close();
+            }
         },
         async onSubmit() {
             await api.update(this.$route.params.cardId, {
