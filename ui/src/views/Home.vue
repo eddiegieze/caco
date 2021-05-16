@@ -14,6 +14,8 @@
 #mainboards {
     width: 50em;
     margin: auto;
+    display: flex;
+    justify-content: center;
 }
 </style>
 

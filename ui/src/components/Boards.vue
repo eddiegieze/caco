@@ -3,14 +3,16 @@
         <h1 class="h1">Boards</h1>
         <ul class="boardlist">
             <li v-for="board in boards" :key="board.id">
-                <router-link
-                    :to="{
-                        name: 'board',
-                        params: { boardId: board.id },
-                    }"
-                >
-                    {{ board.name }}
-                </router-link>
+                <div>
+                    <router-link
+                        :to="{
+                            name: 'board',
+                            params: { boardId: board.id },
+                        }"
+                    >
+                        {{ board.name }}
+                    </router-link>
+                </div>
             </li>
         </ul>
     </div>
@@ -27,6 +29,10 @@ li {
     border-radius: 0.3em;
     margin: 0.3em;
     background-color: #183757;
+    height: 2em;
+    div {
+        padding-top: 0.3em;
+    }
 }
 a {
     color: #7ab1e9;

@@ -1,8 +1,8 @@
 <template>
-    <div id="column">
-        <div class="main">
-            <ul>
-                <li v-for="card in cards" :key="card.id">
+    <div class="main">
+        <ul>
+            <li v-for="card in cards" :key="card.id">
+                <div>
                     <router-link
                         :to="{
                             name: 'card',
@@ -11,11 +11,11 @@
                     >
                         {{ card.name }}
                     </router-link>
-                </li>
-                <li><CardFormSimpleAdd @card-added="addCard" /></li>
-                <router-view @card-edited="editCard"></router-view>
-            </ul>
-        </div>
+                </div>
+            </li>
+            <li><CardFormSimpleAdd @card-added="addCard" /></li>
+            <router-view @card-edited="editCard"></router-view>
+        </ul>
     </div>
 </template>
 
@@ -24,6 +24,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.column {
+    width: 15em;
+}
+
+ul {
+    width: 100%;
 }
 </style>
 

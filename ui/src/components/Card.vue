@@ -113,7 +113,7 @@
     .card-contents {
         background-color: rgb(158, 194, 241);
         margin: 0;
-        padding: 0.6em;
+        padding: 1em;
         text-align: left;
         color: black;
         border-radius: 0;
