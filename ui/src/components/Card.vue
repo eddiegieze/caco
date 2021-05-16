@@ -6,6 +6,7 @@
                     <input
                         type="text"
                         name="card-name"
+                        ref="cardName"
                         autocomplete="off"
                         v-model.lazy.trim="card.name"
                         v-if="editing"
@@ -169,6 +170,11 @@ export default {
         },
         onEdit() {
             this.editing = true;
+            this.$nextTick(() => {
+                var input = this.$refs.cardName;
+                input.focus();
+                input.select();
+            });
         },
         async onCancel() {
             this.editing = false;

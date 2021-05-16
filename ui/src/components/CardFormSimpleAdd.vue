@@ -3,8 +3,8 @@
         <form @submit.prevent="onSubmit" v-if="editing">
             <input
                 type="text"
-                id="add-card-input"
                 name="new-card"
+                ref="newCardInput"
                 autocomplete="off"
                 v-model.lazy.trim="name"
             />
@@ -59,6 +59,9 @@ export default {
         },
         onAdd() {
             this.editing = true;
+            this.$nextTick(() => {
+                this.$refs.newCardInput.focus();
+            });
         },
     },
 };
