@@ -13,7 +13,7 @@
                     </router-link>
                 </div>
             </li>
-            <li><CardFormSimpleAdd @card-added="addCard" /></li>
+            <li><InlineAdd @item-added="addCard" /></li>
             <router-view @card-edited="editCard"></router-view>
         </ul>
     </div>
@@ -37,7 +37,7 @@ ul {
 
 <script>
 import api from "../APIClient/ColumnAPIService.js";
-import CardFormSimpleAdd from "./CardFormSimpleAdd.vue";
+import InlineAdd from "./InlineAdd.vue";
 export default {
     data() {
         return {
@@ -51,7 +51,7 @@ export default {
         columnId: Number,
     },
     components: {
-        CardFormSimpleAdd,
+        InlineAdd,
     },
     methods: {
         async addCard(cardName) {
