@@ -5,6 +5,7 @@
             {{ column.name }}
             <Column :columnId="column.id" />
         </div>
+        <InlineAdd @item-added="addColumn" />
     </div>
 </template>
 
@@ -24,6 +25,7 @@
 import api from "../APIClient/BoardAPIService.js";
 import Column from "./Column.vue";
 import Boards from "./Boards.vue";
+import InlineAdd from "./InlineAdd.vue";
 export default {
     data() {
         return {
@@ -40,10 +42,17 @@ export default {
         async fetchData() {
             this.columns = await api.getColumns(this.$route.params.boardId);
         },
+        async addColumn(columnName) {
+            await api.createColumn(this.$route.params.boardId, {
+                name: columnName,
+            });
+            this.fetchData();
+        },
     },
     components: {
         Column,
         Boards,
+        InlineAdd,
     },
 };
 </script>
