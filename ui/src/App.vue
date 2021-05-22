@@ -46,6 +46,6 @@ li {
 }
 .column {
     margin: 0.5em;
-    background-color: #1e2d3b;
+    background-color: #1b354d;
 }
 </style>

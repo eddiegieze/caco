@@ -1,5 +1,5 @@
 <template>
-    <div class="main">
+    <div class="card-list">
         <ul>
             <li v-for="card in cards" :key="card.id">
                 <div>
@@ -20,7 +20,7 @@
 </template>
 
 <style lang="scss">
-.main {
+.card-list {
     display: flex;
     align-items: center;
     justify-content: center;

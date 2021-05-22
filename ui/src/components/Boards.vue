@@ -1,30 +1,55 @@
 <template>
     <div id="boards" class="column">
-        <h1 class="h1">Boards</h1>
-        <ul class="boardlist">
-            <li v-for="board in boards" :key="board.id">
-                <div>
-                    <router-link
-                        :to="{
-                            name: 'board',
-                            params: { boardId: board.id },
-                        }"
-                    >
-                        {{ board.name }}
-                    </router-link>
-                </div>
-            </li>
-            <li><InlineAdd @item-added="addBoard" /></li>
-        </ul>
+        <h1>Boards</h1>
+        <div class="boards-container">
+            <ul class="boardlist">
+                <li v-for="board in boards" :key="board.id">
+                    <div>
+                        <router-link
+                            :to="{
+                                name: 'board',
+                                params: { boardId: board.id },
+                            }"
+                        >
+                            {{ board.name }}
+                        </router-link>
+                    </div>
+                </li>
+                <li v-if="showAddButton">
+                    <InlineAdd @item-added="addBoard" />
+                </li>
+            </ul>
+        </div>
     </div>
 </template>
 
 <style lang="scss">
+.boards-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .boardlist {
     width: 15em;
-    margin: auto;
     padding: 0;
+
+    li {
+        background-color: #185754;
+    }
+
+    a {
+        color: #7ae2e9;
+    }
+
+    a.router-link-active {
+        color: #ffffff;
+    }
 }
+
+#boards {
+    background-color: #1b434d;
+}
+
 li {
     border: 0.1em solid;
     border-radius: 0.3em;
@@ -35,6 +60,7 @@ li {
         padding-top: 0.3em;
     }
 }
+
 a {
     color: #7ab1e9;
     text-decoration: none;
@@ -55,6 +81,12 @@ export default {
     },
     async created() {
         this.boards = await api.getAll();
+    },
+    props: {
+        showAddButton: {
+            type: Boolean,
+            default: true,
+        },
     },
     methods: {
         async addBoard(boardName) {

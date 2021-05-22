@@ -1,8 +1,8 @@
 <template>
-    <div class="main">
+    <div class="workspace">
         <Boards />
         <div v-for="column in columns" :key="column.id" class="column">
-            {{ column.name }}
+            <h1>{{ column.name }}</h1>
             <Column :columnId="column.id" />
         </div>
         <div id="add-column" class="column">
@@ -16,7 +16,7 @@
 </template>
 
 <style lang="scss">
-.main {
+.workspace {
     display: flex;
     align-items: stretch;
     justify-content: flex-start;
