@@ -5,7 +5,13 @@
             {{ column.name }}
             <Column :columnId="column.id" />
         </div>
-        <InlineAdd @item-added="addColumn" />
+        <div id="add-column" class="column">
+            <ul>
+                <li>
+                    <InlineAdd @item-added="addColumn" />
+                </li>
+            </ul>
+        </div>
     </div>
 </template>
 
@@ -18,6 +24,10 @@
     div {
         border-radius: 0.3em;
     }
+}
+
+#add-column {
+    height: 4.3em;
 }
 </style>
 
