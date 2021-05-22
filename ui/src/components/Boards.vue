@@ -14,6 +14,7 @@
                     </router-link>
                 </div>
             </li>
+            <li><InlineAdd @item-added="addBoard" /></li>
         </ul>
     </div>
 </template>
@@ -42,14 +43,24 @@ a {
 
 <script>
 import api from "../APIClient/BoardAPIService.js";
+import InlineAdd from "./InlineAdd.vue";
 export default {
     data() {
         return {
             boards: [],
         };
     },
+    components: {
+        InlineAdd,
+    },
     async created() {
         this.boards = await api.getAll();
+    },
+    methods: {
+        async addBoard(boardName) {
+            await api.create({ name: boardName });
+            this.boards = await api.getAll();
+        },
     },
 };
 </script>
