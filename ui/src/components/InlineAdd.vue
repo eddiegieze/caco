@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="inline-add">
         <form @submit.prevent="onSubmit" v-if="editing">
             <input
                 type="text"
@@ -9,6 +9,7 @@
                 v-model.lazy.trim="name"
             />
             <button class="ok-button" type="submit" />
+            <button class="cancel-button" @click.prevent="onCancel" />
         </form>
         <button class="add-button" @click.prevent="onAdd" v-else />
     </div>
@@ -23,6 +24,10 @@
     background-image: url("/icons/ok-white.svg");
 }
 
+.cancel-button {
+    background-image: url("/icons/cancel-white.svg");
+}
+
 button {
     height: 2em;
     width: 2em;
@@ -32,6 +37,10 @@ button {
     cursor: pointer;
     position: relative;
     top: -0.4em;
+}
+
+input {
+    width: 10em;
 }
 
 input,
@@ -63,6 +72,9 @@ export default {
                 // @ts-ignore
                 this.$refs.newInput.focus();
             });
+        },
+        onCancel() {
+            this.editing = false;
         },
     },
 };
