@@ -64,4 +64,8 @@ li {
 .delete-button {
     background-image: url("/icons/delete-white.svg");
 }
+
+.add-button {
+    background-image: url("/icons/add-white.svg");
+}
 </style>
