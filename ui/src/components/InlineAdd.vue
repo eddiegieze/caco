@@ -1,5 +1,5 @@
 <template>
-    <div class="inline-add">
+    <div>
         <form @submit.prevent="onSubmit" v-if="editing">
             <input
                 type="text"
@@ -16,18 +16,6 @@
 </template>
 
 <style>
-.add-button {
-    background-image: url("/icons/add-white.svg");
-}
-
-.ok-button {
-    background-image: url("/icons/ok-white.svg");
-}
-
-.cancel-button {
-    background-image: url("/icons/cancel-white.svg");
-}
-
 button {
     height: 2em;
     width: 2em;

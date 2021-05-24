@@ -129,18 +129,6 @@
     form {
         display: inline;
     }
-    .cancel-button {
-        background-image: url("/icons/cancel-white.svg");
-    }
-    .ok-button {
-        background-image: url("/icons/ok-white.svg");
-    }
-    .edit-button {
-        background-image: url("/icons/edit-white.svg");
-    }
-    .delete-button {
-        background-image: url("/icons/delete-white.svg");
-    }
 }
 </style>
 

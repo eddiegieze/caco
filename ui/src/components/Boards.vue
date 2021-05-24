@@ -29,6 +29,7 @@
     align-items: center;
     justify-content: center;
 }
+
 .boardlist {
     width: 15em;
     padding: 0;
