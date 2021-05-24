@@ -10,6 +10,7 @@
                     :itemName="card.name"
                     :itemId="card.id"
                     @item-deleted="deleteCard"
+                    @item-edited="editCardName"
                 />
             </li>
             <li><InlineAdd @item-added="addCard" /></li>
@@ -61,6 +62,12 @@ export default {
             this.cards = await columnApi.getCards(this.columnId);
         },
         async editCard() {
+            this.cards = await columnApi.getCards(this.columnId);
+        },
+        async editCardName(cardId, cardName) {
+            var card = this.cards.find((card) => card.id == cardId);
+            card.name = cardName;
+            await cardApi.update(cardId, card);
             this.cards = await columnApi.getCards(this.columnId);
         },
         async deleteCard(cardId) {

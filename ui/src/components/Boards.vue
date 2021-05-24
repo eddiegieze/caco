@@ -13,6 +13,7 @@
                         :itemId="board.id"
                         :editable="editable"
                         @item-deleted="deleteBoard"
+                        @item-edited="editBoard"
                     />
                 </li>
                 <li v-if="editable">
@@ -98,6 +99,10 @@ export default {
         },
         async deleteBoard(boardId) {
             await api.delete(boardId);
+            this.boards = await api.getAll();
+        },
+        async editBoard(boardId, boardName) {
+            await api.update(boardId, { name: boardName });
             this.boards = await api.getAll();
         },
     },
