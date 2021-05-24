@@ -4,11 +4,11 @@ using Caco.API.Persistence.Contexts;
 
 namespace Caco.API.Persistence.Repositories
 {
-    public class UnitOfWork : IUnitOfWork
+    public class ChangeSet : IChangeSet
     {
         private readonly AppDbContext _context;
 
-        public UnitOfWork(AppDbContext context)
+        public ChangeSet(AppDbContext context)
         {
             _context = context;     
         }

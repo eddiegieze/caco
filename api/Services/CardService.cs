@@ -10,12 +10,12 @@ namespace Caco.API.Services
     public class CardService : ICardService
     {
         private ICardRepository _cardRepository;
-        private IUnitOfWork _unitOfWork;
+        private IChangeSet _changeSet;
 
-        public CardService(ICardRepository cardRepository, IUnitOfWork unitOfWork)
+        public CardService(ICardRepository cardRepository, IChangeSet changeSet)
         {
             _cardRepository = cardRepository;
-            _unitOfWork = unitOfWork;
+            _changeSet = changeSet;
         }
 
         public async Task<IEnumerable<Card>> ListCardsAsync(int columnId)
@@ -33,7 +33,7 @@ namespace Caco.API.Services
             {
                 card.ColumnId = columnId;
                 await _cardRepository.AddAsync(card);
-                await _unitOfWork.CompleteAsync();
+                await _changeSet.CompleteAsync();
 
                 return new CardResponse(card);
             }
@@ -58,7 +58,7 @@ namespace Caco.API.Services
             try
             {
                 _cardRepository.Update(existingCard);
-                await _unitOfWork.CompleteAsync();
+                await _changeSet.CompleteAsync();
 
                 return new CardResponse(existingCard);
             }
@@ -79,7 +79,7 @@ namespace Caco.API.Services
             try
             {
                 _cardRepository.Remove(existingCard);
-                await _unitOfWork.CompleteAsync();
+                await _changeSet.CompleteAsync();
 
                 return new CardResponse(existingCard);
             }
