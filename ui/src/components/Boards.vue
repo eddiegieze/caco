@@ -10,9 +10,12 @@
                             params: { boardId: board.id },
                         }"
                         :itemName="board.name"
+                        :itemId="board.id"
+                        :editable="editable"
+                        @item-deleted="deleteBoard"
                     />
                 </li>
-                <li v-if="showAddButton">
+                <li v-if="editable">
                     <InlineAdd @item-added="addBoard" />
                 </li>
             </ul>
@@ -83,7 +86,7 @@ export default {
         this.boards = await api.getAll();
     },
     props: {
-        showAddButton: {
+        editable: {
             type: Boolean,
             default: true,
         },
@@ -91,6 +94,10 @@ export default {
     methods: {
         async addBoard(boardName) {
             await api.create({ name: boardName });
+            this.boards = await api.getAll();
+        },
+        async deleteBoard(boardId) {
+            await api.delete(boardId);
             this.boards = await api.getAll();
         },
     },

@@ -2,7 +2,7 @@
     <div class="home">
         <h1>Welcome to Cards & Columns</h1>
         <div id="mainboards">
-            <Boards :showAddButton="false" />
+            <Boards :editable="false" />
         </div>
     </div>
 </template>

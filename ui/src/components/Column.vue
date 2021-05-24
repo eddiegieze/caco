@@ -8,6 +8,8 @@
                         params: { cardId: card.id },
                     }"
                     :itemName="card.name"
+                    :itemId="card.id"
+                    @item-deleted="deleteCard"
                 />
             </li>
             <li><InlineAdd @item-added="addCard" /></li>
@@ -33,7 +35,8 @@ ul {
 </style>
 
 <script>
-import api from "../APIClient/ColumnAPIService.js";
+import columnApi from "../APIClient/ColumnAPIService.js";
+import cardApi from "../APIClient/CardAPIService.js";
 import InlineAdd from "./InlineAdd.vue";
 import ColumnItem from "./ColumnItem.vue";
 export default {
@@ -43,7 +46,7 @@ export default {
         };
     },
     async created() {
-        this.cards = await api.getCards(this.columnId);
+        this.cards = await columnApi.getCards(this.columnId);
     },
     props: {
         columnId: Number,
@@ -54,11 +57,15 @@ export default {
     },
     methods: {
         async addCard(cardName) {
-            await api.createCard(this.columnId, { name: cardName });
-            this.cards = await api.getCards(this.columnId);
+            await columnApi.createCard(this.columnId, { name: cardName });
+            this.cards = await columnApi.getCards(this.columnId);
         },
         async editCard() {
-            this.cards = await api.getCards(this.columnId);
+            this.cards = await columnApi.getCards(this.columnId);
+        },
+        async deleteCard(cardId) {
+            await cardApi.delete(cardId);
+            this.cards = await columnApi.getCards(this.columnId);
         },
     },
 };
