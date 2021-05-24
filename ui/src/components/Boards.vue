@@ -4,16 +4,13 @@
         <div class="boards-container">
             <ul class="boardlist">
                 <li v-for="board in boards" :key="board.id">
-                    <div>
-                        <router-link
-                            :to="{
-                                name: 'board',
-                                params: { boardId: board.id },
-                            }"
-                        >
-                            {{ board.name }}
-                        </router-link>
-                    </div>
+                    <ColumnItem
+                        :linkTo="{
+                            name: 'board',
+                            params: { boardId: board.id },
+                        }"
+                        :itemName="board.name"
+                    />
                 </li>
                 <li v-if="showAddButton">
                     <InlineAdd @item-added="addBoard" />
@@ -71,6 +68,7 @@ a {
 <script>
 import api from "../APIClient/BoardAPIService.js";
 import InlineAdd from "./InlineAdd.vue";
+import ColumnItem from "./ColumnItem.vue";
 export default {
     data() {
         return {
@@ -79,6 +77,7 @@ export default {
     },
     components: {
         InlineAdd,
+        ColumnItem,
     },
     async created() {
         this.boards = await api.getAll();

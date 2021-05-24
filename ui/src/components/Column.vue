@@ -2,16 +2,13 @@
     <div class="card-list">
         <ul>
             <li v-for="card in cards" :key="card.id">
-                <div>
-                    <router-link
-                        :to="{
-                            name: 'card',
-                            params: { cardId: card.id },
-                        }"
-                    >
-                        {{ card.name }}
-                    </router-link>
-                </div>
+                <ColumnItem
+                    :linkTo="{
+                        name: 'card',
+                        params: { cardId: card.id },
+                    }"
+                    :itemName="card.name"
+                />
             </li>
             <li><InlineAdd @item-added="addCard" /></li>
             <router-view @card-edited="editCard"></router-view>
@@ -38,6 +35,7 @@ ul {
 <script>
 import api from "../APIClient/ColumnAPIService.js";
 import InlineAdd from "./InlineAdd.vue";
+import ColumnItem from "./ColumnItem.vue";
 export default {
     data() {
         return {
@@ -52,6 +50,7 @@ export default {
     },
     components: {
         InlineAdd,
+        ColumnItem,
     },
     methods: {
         async addCard(cardName) {
