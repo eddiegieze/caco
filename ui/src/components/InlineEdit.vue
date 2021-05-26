@@ -11,9 +11,7 @@
         <button class="cancel-button" @click.prevent="onCancel" />
     </form>
     <div @mouseover="hover = true" @mouseleave="hover = false" v-else>
-        <router-link :to="linkTo">
-            {{ itemName }}
-        </router-link>
+        <slot></slot>
         <span v-if="hover && editable">
             <button class="edit-button" @click.prevent="onEdit" />
             <button class="delete-button" @click.prevent="onDelete" />
@@ -33,7 +31,6 @@ export default {
         };
     },
     props: {
-        linkTo: Object,
         itemName: String,
         itemId: Number,
         editable: {

@@ -4,17 +4,21 @@
         <div class="boards-container">
             <ul class="boardlist">
                 <li v-for="board in boards" :key="board.id">
-                    <ColumnItem
-                        :linkTo="{
-                            name: 'board',
-                            params: { boardId: board.id },
-                        }"
+                    <InlineEdit
                         :itemName="board.name"
                         :itemId="board.id"
-                        :editable="editable"
                         @item-deleted="deleteBoard"
                         @item-edited="editBoard"
-                    />
+                    >
+                        <router-link
+                            :to="{
+                                name: 'board',
+                                params: { boardId: board.id },
+                            }"
+                        >
+                            {{ board.name }}
+                        </router-link>
+                    </InlineEdit>
                 </li>
                 <li v-if="editable">
                     <InlineAdd @item-added="addBoard" />
@@ -71,8 +75,8 @@ a {
 
 <script>
 import api from "../APIClient/BoardAPIService.js";
+import InlineEdit from "./InlineEdit.vue";
 import InlineAdd from "./InlineAdd.vue";
-import ColumnItem from "./ColumnItem.vue";
 export default {
     data() {
         return {
@@ -80,8 +84,8 @@ export default {
         };
     },
     components: {
+        InlineEdit,
         InlineAdd,
-        ColumnItem,
     },
     async created() {
         this.boards = await api.getAll();
