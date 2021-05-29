@@ -12,14 +12,19 @@
     </form>
     <div @mouseover="hover = true" @mouseleave="hover = false" v-else>
         <slot></slot>
-        <span v-if="hover && editable">
+        <span v-if="hover && editable" class="ud-buttons">
             <button class="edit-button" @click.prevent="onEdit" />
             <button class="delete-button" @click.prevent="onDelete" />
         </span>
     </div>
 </template>
 
-<style></style>
+<style>
+.ud-buttons {
+    position: absolute;
+    margin-left: 0.8em;
+}
+</style>
 
 <script>
 export default {

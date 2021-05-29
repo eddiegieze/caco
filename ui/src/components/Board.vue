@@ -30,6 +30,10 @@
     height: calc(100% - 5em);
     div {
         border-radius: 0.3em;
+
+        h1 + span {
+            margin-top: 0.8em;
+        }
     }
 }
 

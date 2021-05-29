@@ -13,6 +13,10 @@ body {
     padding: 0;
 }
 
+h1 {
+    display: inline;
+}
+
 ul {
     padding: 0;
 }
