@@ -9,6 +9,7 @@
                         :itemId="board.id"
                         @item-deleted="deleteBoard"
                         @item-edited="editBoard"
+                        v-if="editable"
                     >
                         <router-link
                             :to="{
@@ -19,6 +20,16 @@
                             {{ board.name }}
                         </router-link>
                     </InlineEdit>
+                    <div v-else>
+                        <router-link
+                            :to="{
+                                name: 'board',
+                                params: { boardId: board.id },
+                            }"
+                        >
+                            {{ board.name }}
+                        </router-link>
+                    </div>
                 </li>
                 <li v-if="editable">
                     <InlineAdd @item-added="addBoard" />
@@ -88,7 +99,7 @@ export default {
         InlineAdd,
     },
     async created() {
-        this.boards = await api.getAll();
+        this.fetchData();
     },
     props: {
         editable: {
@@ -97,17 +108,20 @@ export default {
         },
     },
     methods: {
+        async fetchData() {
+            this.boards = await api.getAll();
+        },
         async addBoard(boardName) {
             await api.create({ name: boardName });
-            this.boards = await api.getAll();
+            this.fetchData();
         },
         async deleteBoard(boardId) {
             await api.delete(boardId);
-            this.boards = await api.getAll();
+            this.fetchData();
         },
         async editBoard(boardId, boardName) {
             await api.update(boardId, { name: boardName });
-            this.boards = await api.getAll();
+            this.fetchData();
         },
     },
 };

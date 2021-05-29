@@ -52,7 +52,7 @@ export default {
         };
     },
     async created() {
-        this.cards = await columnApi.getCards(this.columnId);
+        this.fetchData();
     },
     props: {
         columnId: Number,
@@ -62,22 +62,25 @@ export default {
         InlineAdd,
     },
     methods: {
-        async addCard(cardName) {
-            await columnApi.createCard(this.columnId, { name: cardName });
+        async fetchData() {
             this.cards = await columnApi.getCards(this.columnId);
         },
+        async addCard(cardName) {
+            await columnApi.createCard(this.columnId, { name: cardName });
+            this.fetchData();
+        },
         async editCard() {
-            this.cards = await columnApi.getCards(this.columnId);
+            this.fetchData();
         },
         async editCardName(cardId, cardName) {
             var card = this.cards.find((card) => card.id == cardId);
             card.name = cardName;
             await cardApi.update(cardId, card);
-            this.cards = await columnApi.getCards(this.columnId);
+            this.fetchData();
         },
         async deleteCard(cardId) {
             await cardApi.delete(cardId);
-            this.cards = await columnApi.getCards(this.columnId);
+            this.fetchData();
         },
     },
 };

@@ -2,7 +2,14 @@
     <div class="workspace">
         <Boards />
         <div v-for="column in columns" :key="column.id" class="column">
-            <h1>{{ column.name }}</h1>
+            <InlineEdit
+                :itemName="column.name"
+                :itemId="column.id"
+                @item-deleted="deleteColumn"
+                @item-edited="editColumnName"
+            >
+                <h1>{{ column.name }}</h1>
+            </InlineEdit>
             <Column :columnId="column.id" />
         </div>
         <div id="add-column" class="column">
@@ -32,10 +39,12 @@
 </style>
 
 <script>
-import api from "../APIClient/BoardAPIService.js";
+import boardApi from "../APIClient/BoardAPIService.js";
+import columnApi from "../APIClient/ColumnAPIService.js";
 import Column from "./Column.vue";
 import Boards from "./Boards.vue";
 import InlineAdd from "./InlineAdd.vue";
+import InlineEdit from "./InlineEdit.vue";
 export default {
     data() {
         return {
@@ -50,12 +59,22 @@ export default {
     },
     methods: {
         async fetchData() {
-            this.columns = await api.getColumns(this.$route.params.boardId);
+            this.columns = await boardApi.getColumns(
+                this.$route.params.boardId
+            );
         },
         async addColumn(columnName) {
-            await api.createColumn(this.$route.params.boardId, {
+            await boardApi.createColumn(this.$route.params.boardId, {
                 name: columnName,
             });
+            this.fetchData();
+        },
+        async editColumnName(columnId, columnName) {
+            await columnApi.update(columnId, { name: columnName });
+            this.fetchData();
+        },
+        async deleteColumn(columnId) {
+            await columnApi.delete(columnId);
             this.fetchData();
         },
     },
@@ -63,6 +82,7 @@ export default {
         Column,
         Boards,
         InlineAdd,
+        InlineEdit,
     },
 };
 </script>
