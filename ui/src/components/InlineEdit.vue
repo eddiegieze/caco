@@ -1,5 +1,5 @@
 <template>
-    <form @submit.prevent="onSubmit" v-if="editing">
+    <form @submit.prevent="onSubmit" v-if="editing" v-on-clickaway="onCancel">
         <input
             type="text"
             name="edit-name"
@@ -27,6 +27,7 @@
 </style>
 
 <script>
+import { mixin as clickaway } from "vue-clickaway";
 export default {
     data() {
         return {
@@ -35,6 +36,7 @@ export default {
             name: this.itemName,
         };
     },
+    mixins: [clickaway],
     props: {
         itemName: String,
         itemId: Number,

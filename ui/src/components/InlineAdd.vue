@@ -1,6 +1,10 @@
 <template>
     <div>
-        <form @submit.prevent="onSubmit" v-if="editing">
+        <form
+            @submit.prevent="onSubmit"
+            v-if="editing"
+            v-on-clickaway="onCancel"
+        >
             <input
                 type="text"
                 name="new-item"
@@ -41,6 +45,7 @@ textarea {
 </style>
 
 <script>
+import { mixin as clickaway } from "vue-clickaway";
 export default {
     data() {
         return {
@@ -48,6 +53,7 @@ export default {
             editing: false,
         };
     },
+    mixins: [clickaway],
     methods: {
         onSubmit() {
             if (this.name !== "") this.$emit("item-added", this.name);
