@@ -17,6 +17,16 @@
     display: flex;
     justify-content: center;
 }
+
+li {
+    a {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        padding: 0 2em 0 2em;
+        display: block;
+    }
+}
 </style>
 
 <script>
