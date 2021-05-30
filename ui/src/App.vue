@@ -70,4 +70,8 @@ li {
 .add-button {
     background-image: url("/icons/add-white.svg");
 }
+
+.column {
+    border-radius: 0.3em;
+}
 </style>
