@@ -27,7 +27,6 @@
     display: flex;
     align-items: stretch;
     justify-content: flex-start;
-    height: calc(100% - 5em);
     div {
         border-radius: 0.3em;
 

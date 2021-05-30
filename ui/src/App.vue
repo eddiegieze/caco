@@ -8,9 +8,9 @@
 <style lang="scss">
 html,
 body {
-    height: 100%;
     margin: 0;
     padding: 0;
+    background-color: #000000;
 }
 
 h1 {
@@ -31,8 +31,6 @@ li {
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #7ab1e9;
-    background-color: #000000;
-    height: 100%;
 }
 
 #nav {
