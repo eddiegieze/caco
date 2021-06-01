@@ -16,6 +16,7 @@
                                 name: 'board',
                                 params: { boardId: board.id },
                             }"
+                            class="ud-content"
                         >
                             {{ board.name }}
                         </router-link>

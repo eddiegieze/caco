@@ -23,7 +23,17 @@ li {
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        padding: 0 2em 0 2em;
+        padding: 0 1em 0 1em;
+        display: block;
+    }
+}
+
+.column {
+    h1 {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        padding: 0 1em 0 1em;
         display: block;
     }
 }

@@ -13,6 +13,7 @@
                             name: 'card',
                             params: { cardId: card.id },
                         }"
+                        class="ud-content"
                     >
                         {{ card.name }}
                     </router-link>

@@ -8,7 +8,7 @@
                 @item-deleted="deleteColumn"
                 @item-edited="editColumnName"
             >
-                <h1>{{ column.name }}</h1>
+                <h1 class="ud-content">{{ column.name }}</h1>
             </InlineEdit>
             <Column :columnId="column.id" />
         </div>
@@ -30,8 +30,8 @@
     div {
         border-radius: 0.3em;
 
-        h1 + span {
-            margin-top: 0.8em;
+        h1 + div {
+            margin: auto 0 auto 0;
         }
     }
 }
