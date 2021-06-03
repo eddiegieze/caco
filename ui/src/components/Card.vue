@@ -83,6 +83,8 @@
         span {
             border: 0.05em solid;
             border-color: rgb(46, 137, 255);
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
     }
 
