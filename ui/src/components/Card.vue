@@ -155,7 +155,15 @@ export default {
     },
     methods: {
         async fetchData() {
-            this.card = await api.get(this.$route.params.cardId);
+            try {
+                this.card = await api.get(this.$route.params.cardId);
+            } catch (err) {
+                alert("Error: " + err.response.status);
+                this.$router.push({
+                    name: "board",
+                    params: { boardId: this.$route.params.boardId },
+                });
+            }
         },
         close() {
             this.$router.push({

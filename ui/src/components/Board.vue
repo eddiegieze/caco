@@ -62,9 +62,16 @@ export default {
     },
     methods: {
         async fetchData() {
-            this.columns = await boardApi.getColumns(
-                this.$route.params.boardId
-            );
+            try {
+                this.columns = await boardApi.getColumns(
+                    this.$route.params.boardId
+                );
+            } catch (err) {
+                alert("Error: " + err.response.status);
+                this.$router.push({
+                    name: "Home",
+                });
+            }
         },
         async addColumn(columnName) {
             await boardApi.createColumn(this.$route.params.boardId, {
