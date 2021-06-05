@@ -49,7 +49,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.35);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -60,6 +60,7 @@
     height: 70vh;
     display: flex;
     flex-direction: column;
+    box-shadow: 3px 3px 5px #000;
     h1 {
         background-color: rgb(46, 137, 255);
         margin: 0;

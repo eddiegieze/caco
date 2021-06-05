@@ -11,6 +11,8 @@ body {
     margin: 0;
     padding: 0;
     background-color: #000000;
+    background-image: url("/andrew-ridley-jR4Zf-riEjI-unsplash.jpg");
+    background-size: cover;
 }
 
 h1 {
@@ -46,10 +48,6 @@ li {
         }
     }
 }
-.column {
-    margin: 0.5em;
-    background-color: #1b354d;
-}
 
 .cancel-button {
     background-image: url("/icons/cancel-white.svg");
@@ -73,5 +71,8 @@ li {
 
 .column {
     border-radius: 0.3em;
+    box-shadow: 3px 3px 5px #000;
+    margin: 0.5em;
+    background-color: #1b354d;
 }
 </style>
