@@ -29,6 +29,9 @@ namespace Caco.API.Controllers
         public async Task<IActionResult> GetAsync(int id)
         {
             var card = await _cardService.GetAsync(id);
+            if (card == null) {
+                return NotFound("Card not found.");
+            }
             var resource = _mapper.Map<Card, CardResource>(card);
 
             return Ok(resource);
