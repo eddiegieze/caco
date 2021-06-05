@@ -193,11 +193,15 @@ export default {
             }
         },
         async onSubmit() {
-            await api.update(this.$route.params.cardId, {
-                name: this.card.name,
-                description: this.card.description,
-            });
-            this.$emit("card-edited");
+            try {
+                await api.update(this.$route.params.cardId, {
+                    name: this.card.name,
+                    description: this.card.description,
+                });
+                this.$emit("card-edited");
+            } catch (err) {
+                alert("Failed to update card.");
+            }
             await this.fetchData();
             this.editing = false;
         },

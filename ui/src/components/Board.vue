@@ -74,13 +74,21 @@ export default {
             }
         },
         async addColumn(columnName) {
-            await boardApi.createColumn(this.$route.params.boardId, {
-                name: columnName,
-            });
+            try {
+                await boardApi.createColumn(this.$route.params.boardId, {
+                    name: columnName,
+                });
+            } catch (err) {
+                alert("Failed to add column.");
+            }
             this.fetchData();
         },
         async editColumnName(columnId, columnName) {
-            await columnApi.update(columnId, { name: columnName });
+            try {
+                await columnApi.update(columnId, { name: columnName });
+            } catch (err) {
+                alert("Failed to update column.");
+            }
             this.fetchData();
         },
         async deleteColumn(columnId) {

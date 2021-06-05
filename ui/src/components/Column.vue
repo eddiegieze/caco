@@ -67,7 +67,11 @@ export default {
             this.cards = await columnApi.getCards(this.columnId);
         },
         async addCard(cardName) {
-            await columnApi.createCard(this.columnId, { name: cardName });
+            try {
+                await columnApi.createCard(this.columnId, { name: cardName });
+            } catch (err) {
+                alert("Failed to update card.");
+            }
             this.fetchData();
         },
         async editCard() {
@@ -76,7 +80,11 @@ export default {
         async editCardName(cardId, cardName) {
             var card = this.cards.find((card) => card.id == cardId);
             card.name = cardName;
-            await cardApi.update(cardId, card);
+            try {
+                await cardApi.update(cardId, card);
+            } catch (err) {
+                alert("Failed to update card.");
+            }
             this.fetchData();
         },
         async deleteCard(cardId) {

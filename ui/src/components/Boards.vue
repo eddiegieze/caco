@@ -113,7 +113,11 @@ export default {
             this.boards = await api.getAll();
         },
         async addBoard(boardName) {
-            await api.create({ name: boardName });
+            try {
+                await api.create({ name: boardName });
+            } catch (err) {
+                alert("Failed to add board.");
+            }
             this.fetchData();
         },
         async deleteBoard(boardId) {
@@ -121,7 +125,11 @@ export default {
             this.fetchData();
         },
         async editBoard(boardId, boardName) {
-            await api.update(boardId, { name: boardName });
+            try {
+                await api.update(boardId, { name: boardName });
+            } catch (err) {
+                alert("Failed to update board.");
+            }
             this.fetchData();
         },
     },
