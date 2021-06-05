@@ -66,6 +66,7 @@
         padding: 0.6em;
         color: white;
         height: 1.3em;
+        min-height: 1.3em;
         display: flex;
         border-radius: 0.3em 0.3em 0 0;
 
@@ -123,6 +124,8 @@
         color: black;
         border-radius: 0em 0em 0.3em 0.3em;
         flex-grow: 1;
+        max-height: 30em;
+        overflow: scroll;
 
         p {
             white-space: pre-line;
