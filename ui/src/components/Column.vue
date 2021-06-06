@@ -34,6 +34,7 @@
 
 .column {
     width: 15em;
+    min-width: 15em;
 }
 
 ul {

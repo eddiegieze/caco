@@ -13,6 +13,8 @@ body {
     background-color: #000000;
     background-image: url("/andrew-ridley-jR4Zf-riEjI-unsplash.jpg");
     background-size: cover;
+    width: 100vw;
+    height: 100vh;
 }
 
 h1 {

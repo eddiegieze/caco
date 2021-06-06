@@ -24,9 +24,12 @@
 
 <style lang="scss">
 .workspace {
-    display: flex;
+    display: inline-flex;
     align-items: stretch;
     justify-content: flex-start;
+    overflow: scroll;
+    width: 100%;
+    height: 100%;
     div {
         border-radius: 0.3em;
 
