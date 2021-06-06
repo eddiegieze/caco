@@ -20,7 +20,8 @@ namespace Caco.API.Persistence.Contexts
             builder.Entity<Board>().HasKey(p => p.Id);
             builder.Entity<Board>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
             builder.Entity<Board>().Property(p => p.Name).IsRequired().HasMaxLength(30);
-            builder.Entity<Board>().HasMany(p => p.Columns).WithOne(p => p.Board).HasForeignKey(p => p.BoardId);
+            builder.Entity<Board>().HasMany(p => p.Columns).WithOne(p => p.Board).HasForeignKey(p => p.BoardId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder.Entity<Board>().HasData
             (
@@ -32,7 +33,8 @@ namespace Caco.API.Persistence.Contexts
             builder.Entity<Column>().HasKey(p => p.Id);
             builder.Entity<Column>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
             builder.Entity<Column>().Property(p => p.Name).IsRequired().HasMaxLength(30);
-            builder.Entity<Column>().HasMany(p => p.Cards).WithOne(p => p.Column).HasForeignKey(p => p.ColumnId);
+            builder.Entity<Column>().HasMany(p => p.Cards).WithOne(p => p.Column).HasForeignKey(p => p.ColumnId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder.Entity<Column>().HasData
             (

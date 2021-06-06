@@ -42,7 +42,7 @@ namespace Caco.API
             services.AddScoped<IColumnService, ColumnService>();
             services.AddScoped<ICardRepository, CardRepository>();
             services.AddScoped<ICardService, CardService>();
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IChangeSet, ChangeSet>();
 
             services.AddAutoMapper(typeof(Startup));
         }

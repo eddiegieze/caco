@@ -10,12 +10,12 @@ namespace Caco.API.Services
     public class ColumnService : IColumnService
     {
         private IColumnRepository _columnRepository;
-        private IUnitOfWork _unitOfWork;
+        private IChangeSet _changeSet;
 
-        public ColumnService(IColumnRepository columnRepository, IUnitOfWork unitOfWork)
+        public ColumnService(IColumnRepository columnRepository, IChangeSet changeSet)
         {
             _columnRepository = columnRepository;
-            _unitOfWork = unitOfWork;
+            _changeSet = changeSet;
         }
 
         public async Task<bool> Exists(int id)
@@ -34,7 +34,7 @@ namespace Caco.API.Services
             {
                 column.BoardId = boardId;
                 await _columnRepository.AddAsync(column);
-                await _unitOfWork.CompleteAsync();
+                await _changeSet.CompleteAsync();
 
                 return new ColumnResponse(column);
             }
@@ -58,7 +58,7 @@ namespace Caco.API.Services
             try
             {
                 _columnRepository.Update(existingColumn);
-                await _unitOfWork.CompleteAsync();
+                await _changeSet.CompleteAsync();
 
                 return new ColumnResponse(existingColumn);
             }
@@ -79,7 +79,7 @@ namespace Caco.API.Services
             try
             {
                 _columnRepository.Remove(existingColumn);
-                await _unitOfWork.CompleteAsync();
+                await _changeSet.CompleteAsync();
 
                 return new ColumnResponse(existingColumn);
             }

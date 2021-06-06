@@ -10,12 +10,12 @@ namespace Caco.API.Services
     public class BoardService : IBoardService
     {
         private IBoardRepository _boardRepository;
-        private IUnitOfWork _unitOfWork;
+        private IChangeSet _changeSet;
 
-        public BoardService(IBoardRepository boardRepository, IUnitOfWork unitOfWork)
+        public BoardService(IBoardRepository boardRepository, IChangeSet changeSet)
         {
             _boardRepository = boardRepository;
-            _unitOfWork = unitOfWork;
+            _changeSet = changeSet;
         }
 
         public async Task<bool> Exists(int id)
@@ -33,7 +33,7 @@ namespace Caco.API.Services
             try
             {
                 await _boardRepository.AddAsync(Board);
-                await _unitOfWork.CompleteAsync();
+                await _changeSet.CompleteAsync();
 
                 return new BoardResponse(Board);
             }
@@ -57,7 +57,7 @@ namespace Caco.API.Services
             try
             {
                 _boardRepository.Update(existingBoard);
-                await _unitOfWork.CompleteAsync();
+                await _changeSet.CompleteAsync();
 
                 return new BoardResponse(existingBoard);
             }
@@ -78,7 +78,7 @@ namespace Caco.API.Services
             try
             {
                 _boardRepository.Remove(existingBoard);
-                await _unitOfWork.CompleteAsync();
+                await _changeSet.CompleteAsync();
 
                 return new BoardResponse(existingBoard);
             }

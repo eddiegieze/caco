@@ -16,12 +16,14 @@ namespace Caco.API.Controllers
     {
         private readonly ILogger<BoardController> _logger;
         private readonly IBoardService _boardService;
+        private readonly IColumnService _columnService;
         private readonly IMapper _mapper;
 
-        public BoardController(ILogger<BoardController> logger, IBoardService boardService, IMapper mapper)
+        public BoardController(ILogger<BoardController> logger, IBoardService boardService, IMapper mapper, IColumnService columnService)
         {
             _logger = logger;
             _boardService = boardService;
+            _columnService = columnService;
             _mapper = mapper;
         }
 
@@ -78,6 +80,41 @@ namespace Caco.API.Controllers
 
             var boardResource = _mapper.Map<Board, BoardResource>(result.Board);
             return Ok(boardResource);
+        }
+
+
+        [HttpGet("{id}/columns")]
+        public async Task<IActionResult> GetAsync(int id)
+        {
+            if (!await _boardService.Exists(id))
+            {
+                return NotFound("Board not found.");
+            }
+            var columns = await _columnService.ListColumnsAsync(id);
+            var resources = _mapper.Map<IEnumerable<Column>, IEnumerable<ColumnResource>>(columns);
+
+            return Ok(resources);
+        }
+
+        [HttpPost("{id}/columns")]
+        public async Task<IActionResult> PostAsync(int id, [FromBody] SaveColumnResource saveColumnResource)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState.GetErrorMessages());
+            }
+            if (!await _boardService.Exists(id))
+            {
+                return NotFound("Board not found.");
+            }
+            var column = _mapper.Map<SaveColumnResource, Column>(saveColumnResource);
+            var result = await _columnService.SaveAsync(id, column);
+
+            if (!result.Success)
+                return BadRequest(result.Message);
+
+            var columnResource = _mapper.Map<Column, ColumnResource>(result.Column);
+            return Ok(columnResource);
         }
     }
 }
