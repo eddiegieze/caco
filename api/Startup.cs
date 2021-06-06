@@ -44,6 +44,17 @@ namespace Caco.API
             services.AddScoped<IChangeSet, ChangeSet>();
 
             services.AddAutoMapper(typeof(Startup));
+
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.WithOrigins("http://localhost:8080")
+                        .WithMethods("GET", "POST", "PUT", "DELETE")
+                        .WithHeaders("content-type");
+                    });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -62,7 +73,7 @@ namespace Caco.API
             }
 
             app.UseRouting();
-
+            app.UseCors();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
