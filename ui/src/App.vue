@@ -76,5 +76,7 @@ li {
     box-shadow: 3px 3px 5px #000;
     margin: 0.5em;
     background-color: #1b354d;
+    width: 15em;
+    min-width: 15em;
 }
 </style>
