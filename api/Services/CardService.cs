@@ -64,7 +64,6 @@ namespace Caco.API.Services
             }
             catch (Exception ex)
             {
-                // Do some logging stuff
                 return new CardResponse($"An error occurred when updating the Card: {ex.Message}");
             }
         }
@@ -74,7 +73,9 @@ namespace Caco.API.Services
             var existingCard = await _cardRepository.FindByIdAsync(id);
 
             if (existingCard == null)
+            {
                 return new CardResponse("Card not found.");
+            }
 
             try
             {
@@ -85,7 +86,6 @@ namespace Caco.API.Services
             }
             catch (Exception ex)
             {
-                // Do some logging stuff
                 return new CardResponse($"An error occurred when deleting the Card: {ex.Message}");
             }
         }

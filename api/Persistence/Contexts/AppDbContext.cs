@@ -26,7 +26,7 @@ namespace Caco.API.Persistence.Contexts
             builder.Entity<Board>().HasData
             (
                 new Board { Id = 100, Name = "Dailies" },
-                new Board { Id = 101, Name = "Sprint Rocket" }
+                new Board { Id = 101, Name = "Sprint Team Rocket" }
             );
 
             builder.Entity<Column>().ToTable("Columns");

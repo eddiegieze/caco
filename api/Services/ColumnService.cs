@@ -74,7 +74,9 @@ namespace Caco.API.Services
             var existingColumn = await _columnRepository.FindByIdAsync(id);
 
             if (existingColumn == null)
+            {
                 return new ColumnResponse("Column not found.");
+            }
 
             try
             {
@@ -85,7 +87,6 @@ namespace Caco.API.Services
             }
             catch (Exception ex)
             {
-                // Do some logging stuff
                 return new ColumnResponse($"An error occurred when deleting the Column: {ex.Message}");
             }
         }

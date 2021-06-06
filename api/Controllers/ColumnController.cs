@@ -6,7 +6,6 @@ using Caco.API.Models;
 using Caco.API.Resources;
 using Caco.API.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
 namespace Caco.API.Controllers
 {
@@ -14,14 +13,12 @@ namespace Caco.API.Controllers
     [Route("columns")]
     public class ColumnController : ControllerBase
     {
-        private readonly ILogger<ColumnController> _logger;
         private readonly IColumnService _columnService;
         private readonly ICardService _cardService;
         private readonly IMapper _mapper;
 
-        public ColumnController(ILogger<ColumnController> logger, IColumnService columnService, IMapper mapper, ICardService cardService)
+        public ColumnController(IColumnService columnService, IMapper mapper, ICardService cardService)
         {
-            _logger = logger;
             _columnService = columnService;
             _cardService = cardService;
             _mapper = mapper;
@@ -31,13 +28,17 @@ namespace Caco.API.Controllers
         public async Task<IActionResult> PutAsync(int id, [FromBody] SaveColumnResource saveColumnResource)
         {
             if (!ModelState.IsValid)
+            {
                 return BadRequest(ModelState.GetErrorMessages());
+            }
 
             var column = _mapper.Map<SaveColumnResource, Column>(saveColumnResource);
             var result = await _columnService.UpdateAsync(id, column);
 
             if (!result.Success)
+            {
                 return BadRequest(result.Message);
+            }
 
             var columnResource = _mapper.Map<Column, ColumnResource>(result.Column);
             return Ok(columnResource);
@@ -49,7 +50,9 @@ namespace Caco.API.Controllers
             var result = await _columnService.DeleteAsync(id);
 
             if (!result.Success)
+            {
                 return BadRequest(result.Message);
+            }
 
             var columnResource = _mapper.Map<Column, ColumnResource>(result.Column);
             return Ok(columnResource);

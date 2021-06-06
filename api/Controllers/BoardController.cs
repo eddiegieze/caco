@@ -6,7 +6,6 @@ using Caco.API.Models;
 using Caco.API.Resources;
 using Caco.API.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
 namespace Caco.API.Controllers
 {
@@ -14,14 +13,12 @@ namespace Caco.API.Controllers
     [Route("boards")]
     public class BoardController : ControllerBase
     {
-        private readonly ILogger<BoardController> _logger;
         private readonly IBoardService _boardService;
         private readonly IColumnService _columnService;
         private readonly IMapper _mapper;
 
-        public BoardController(ILogger<BoardController> logger, IBoardService boardService, IMapper mapper, IColumnService columnService)
+        public BoardController(IBoardService boardService, IMapper mapper, IColumnService columnService)
         {
-            _logger = logger;
             _boardService = boardService;
             _columnService = columnService;
             _mapper = mapper;
@@ -48,7 +45,9 @@ namespace Caco.API.Controllers
             var result = await _boardService.SaveAsync(board);
 
             if (!result.Success)
+            {
                 return BadRequest(result.Message);
+            }
 
             var boardResource = _mapper.Map<Board, BoardResource>(result.Board);
             return Ok(boardResource);
@@ -58,13 +57,17 @@ namespace Caco.API.Controllers
         public async Task<IActionResult> PutAsync(int id, [FromBody] SaveBoardResource saveBoardResource)
         {
             if (!ModelState.IsValid)
+            {
                 return BadRequest(ModelState.GetErrorMessages());
+            }
 
             var board = _mapper.Map<SaveBoardResource, Board>(saveBoardResource);
             var result = await _boardService.UpdateAsync(id, board);
 
             if (!result.Success)
+            {
                 return BadRequest(result.Message);
+            }
 
             var boardResource = _mapper.Map<Board, BoardResource>(result.Board);
             return Ok(boardResource);
@@ -76,7 +79,9 @@ namespace Caco.API.Controllers
             var result = await _boardService.DeleteAsync(id);
 
             if (!result.Success)
+            {
                 return BadRequest(result.Message);
+            }
 
             var boardResource = _mapper.Map<Board, BoardResource>(result.Board);
             return Ok(boardResource);
@@ -111,7 +116,9 @@ namespace Caco.API.Controllers
             var result = await _columnService.SaveAsync(id, column);
 
             if (!result.Success)
+            {
                 return BadRequest(result.Message);
+            }
 
             var columnResource = _mapper.Map<Column, ColumnResource>(result.Column);
             return Ok(columnResource);

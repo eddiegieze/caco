@@ -63,7 +63,6 @@ namespace Caco.API.Services
             }
             catch (Exception ex)
             {
-                // Do some logging stuff
                 return new BoardResponse($"An error occurred when updating the Board: {ex.Message}");
             }
         }
@@ -73,7 +72,9 @@ namespace Caco.API.Services
             var existingBoard = await _boardRepository.FindByIdAsync(id);
 
             if (existingBoard == null)
+            {
                 return new BoardResponse("Board not found.");
+            }
 
             try
             {
@@ -84,7 +85,6 @@ namespace Caco.API.Services
             }
             catch (Exception ex)
             {
-                // Do some logging stuff
                 return new BoardResponse($"An error occurred when deleting the Board: {ex.Message}");
             }
         }
