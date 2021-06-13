@@ -53,10 +53,12 @@ li {
 
 .cancel-button {
     background-image: url("/icons/cancel-white.svg");
+    top: 0em;
 }
 
 .ok-button {
     background-image: url("/icons/ok-white.svg");
+    top: 0em;
 }
 
 .edit-button {
