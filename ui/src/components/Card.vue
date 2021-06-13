@@ -66,8 +66,8 @@
         margin: 0;
         padding: 0.6em;
         color: white;
-        height: 1.3em;
-        min-height: 1.3em;
+        height: 1.4em;
+        min-height: 1.4em;
         display: flex;
         border-radius: 0.3em 0.3em 0 0;
 
@@ -76,10 +76,6 @@
             flex-grow: 1;
             text-align: left;
             padding: 0;
-        }
-
-        input {
-            padding-top: 0.18em;
         }
 
         span {
