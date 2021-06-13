@@ -51,7 +51,8 @@ li {
 }
 
 .welcome {
-    text-shadow: 1px 4px 4px #000;
+    text-shadow: 3px 4px 2px #000;
+    color: #b1d8ff;
 }
 
 .backgroundsource {
