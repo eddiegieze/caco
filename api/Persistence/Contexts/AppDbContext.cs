@@ -26,7 +26,7 @@ namespace Caco.API.Persistence.Contexts
             builder.Entity<Board>().HasData
             (
                 new Board { Id = 100, Name = "Dailies" },
-                new Board { Id = 101, Name = "Sprint Team Rocket" }
+                new Board { Id = 101, Name = "Sprint Team 1" }
             );
 
             builder.Entity<Column>().ToTable("Columns");
@@ -38,8 +38,12 @@ namespace Caco.API.Persistence.Contexts
 
             builder.Entity<Column>().HasData
             (
-                new Column { Id = 100, Name = "Inbox", BoardId = 100 },
-                new Column { Id = 101, Name = "Backlog", BoardId = 101 }
+                new Column { Id = 100, Name = "Day 1", BoardId = 100 },
+                new Column { Id = 101, Name = "Day 2", BoardId = 100 },
+                new Column { Id = 102, Name = "Day 3", BoardId = 100 },
+                new Column { Id = 103, Name = "Sprint", BoardId = 101 },
+                new Column { Id = 104, Name = "Doing", BoardId = 101 },
+                new Column { Id = 105, Name = "Done", BoardId = 101 }
             );
 
             builder.Entity<Card>().ToTable("Cards");
@@ -50,8 +54,12 @@ namespace Caco.API.Persistence.Contexts
 
             builder.Entity<Card>().HasData
             (
-                new Card { Id = 100, Name = "My first card", Description = "I like cards.", ColumnId = 100 },
-                new Card { Id = 101, Name = "Add more", Description = "One card isn't enough.", ColumnId = 101 }
+                new Card { Id = 100, Name = "Attending daily", Description = "The only thing I did that day.", ColumnId = 100 },
+                new Card { Id = 101, Name = "Create todo app", Description = "We need more todo apps.", ColumnId = 103 },
+                new Card { Id = 102, Name = "Write TPS report", Description = "", ColumnId = 104 },
+                new Card { Id = 103, Name = "Buy cover sheets", Description = "", ColumnId = 105 },
+                new Card { Id = 104, Name = "Read memos", Description = "", ColumnId = 105 },
+                new Card { Id = 105, Name = "Buy ping pong table", Description = "", ColumnId = 103 }
             );
         }
     }
