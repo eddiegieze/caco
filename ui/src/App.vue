@@ -71,6 +71,8 @@ li {
 
 .add-button {
     background-image: url("/icons/add-white.svg");
+    top: -0.1em;
+    padding: 1px 6px 1px 6px;
 }
 
 .column {

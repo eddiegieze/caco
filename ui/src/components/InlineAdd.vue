@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="inline-add">
         <form
             @submit.prevent="onSubmit"
             v-if="editing"
@@ -20,6 +20,12 @@
 </template>
 
 <style>
+.inline-add {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 button {
     height: 2em;
     width: 2em;
