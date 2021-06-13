@@ -122,7 +122,7 @@
         border-radius: 0em 0em 0.3em 0.3em;
         flex-grow: 1;
         max-height: 30em;
-        overflow: scroll;
+        overflow: auto;
 
         p {
             white-space: pre-line;

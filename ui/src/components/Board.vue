@@ -27,7 +27,7 @@
     display: inline-flex;
     align-items: stretch;
     justify-content: flex-start;
-    overflow: scroll;
+    overflow: auto;
     width: 100%;
     height: 100%;
     div {
