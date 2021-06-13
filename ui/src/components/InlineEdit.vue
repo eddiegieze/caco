@@ -1,14 +1,22 @@
 <template>
-    <form @submit.prevent="onSubmit" v-if="editing" v-on-clickaway="onCancel">
+    <form
+        @submit.prevent="onSubmit"
+        v-if="editing"
+        v-on-clickaway="onCancel"
+        class="ud-buttons-container"
+    >
         <input
             type="text"
             name="edit-name"
             ref="nameInput"
             autocomplete="off"
             v-model.lazy.trim="name"
+            class="ud-content"
         />
-        <button class="ok-button" type="submit" />
-        <button class="cancel-button" @click.prevent="onCancel" />
+        <div class="ud-buttons">
+            <button class="ok-button" type="submit" />
+            <button class="cancel-button" @click.prevent="onCancel" />
+        </div>
     </form>
     <div
         @mouseover="hover = true"
@@ -79,10 +87,10 @@ export default {
             this.editing = false;
         },
         onSubmit() {
+            this.editing = false;
             if (this.name !== "") {
                 this.$emit("item-edited", this.itemId, this.name);
             }
-            this.editing = false;
         },
     },
 };
