@@ -6,7 +6,7 @@ Cards and columns is a simple Single Page Application (SPA) of a sprint board us
 
 ## Initial setup
 
-To run card and columns on your own machine, follow these steps:
+To run cards and columns on your own machine, follow these steps:
 
 ### Download and install Visual Studio Code
 
