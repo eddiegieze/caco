@@ -39,5 +39,3 @@ When browsing through the code files, you can install these VS Code extensions w
 2. npm install
 3. npm run serve (serve and support hot-reload)
 4. View the UI by visiting <http://localhost:8080/>
-
-## Code structure
