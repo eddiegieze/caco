@@ -2,6 +2,8 @@
 
 Cards and columns is a simple Single Page Application (SPA) of a sprint board using VueJS and .NET Core Web API. You can make boards, cards and columns, edit them and delete them.
 
+![board](https://raw.githubusercontent.com/eddiegieze/caco/main/images/board.png)
+
 ## Initial setup
 
 To run card and columns on your own machine, follow these steps:
