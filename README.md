@@ -41,3 +41,39 @@ When browsing through the code files, you can install these VS Code extensions w
 2. npm install
 3. npm run serve (serve and support hot-reload)
 4. View the UI by visiting <http://localhost:8080/>
+
+## Code structure API
+
+### Controllers
+
+- House the API endpoints
+- Call mappers
+- Connect to services to handle requests
+
+### Mapping
+
+- Map between public resources and private model objects
+
+### Model
+
+- The basic domain model classes
+- Interfaces for repositories containing those classes
+
+### Persistence
+
+- Implementation of the repository interfaces in entity framework
+- The database context (including a sample in-memory database)
+
+### Resources
+
+- Public classes to communicate through the API without exposing all the properties of the domain model objects, or polluting domain model objects with API-specific functionality
+
+### Services
+
+- Layer between the repository and the API, to link together repository functionality in comprehensive methods, keeping the controllers and repository simple
+
+### Miscellaneous
+
+- Extensions, helper methods for 3rd party classes
+- Properties, settings for visual studio code
+- Program.cs & Startup.cs for configuration and to wire together the different classes and dependencies
