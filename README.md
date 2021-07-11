@@ -52,7 +52,7 @@ When browsing through the code files, you can install these VS Code extensions w
 
 ### Mapping
 
-- Map between public resources and private model objects
+Map between public resources and private model objects.
 
 ### Model
 
@@ -66,14 +66,48 @@ When browsing through the code files, you can install these VS Code extensions w
 
 ### Resources
 
-- Public classes to communicate through the API without exposing all the properties of the domain model objects, or polluting domain model objects with API-specific functionality
+Public classes to communicate through the API without exposing all the properties of the domain model objects, or polluting domain model objects with API-specific functionality.
 
 ### Services
 
-- Layer between the repository and the API, to link together repository functionality in comprehensive methods, keeping the controllers and repository simple
+Layer between the repository and the API, to link together repository functionality in comprehensive methods, keeping the controllers and repository simple.
 
-### Miscellaneous
+### Miscellaneous (API)
 
 - Extensions, helper methods for 3rd party classes
 - Properties, settings for visual studio code
 - Program.cs & Startup.cs for configuration and to wire together the different classes and dependencies
+
+## Code structure UI
+
+### public
+
+House static contents such as HTML and images.
+
+### src/APIClient
+
+Connect to the API with axios.
+
+### src/components
+
+Vue components:
+
+- Board.vue: show a board
+- Boards.vue: show a list of boards
+- Card.vue: show and edit a single card
+- Column.vue: show a column of cards
+- InlineAdd.vue: generic component to add items in a list
+- InlineEdit.vue: generic component to edit items in a list
+
+### src/router
+
+Configuration for the Vue SPA router, allowing URL navigation.
+
+### src/views
+
+Contains the basic home view.
+
+### Miscellaneous (UI)
+
+- App.vue & main.js: starting point for Vue
+- Some configuration files for VS Code & npm
