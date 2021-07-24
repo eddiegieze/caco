@@ -37,10 +37,11 @@ When browsing through the code files, you can install these VS Code extensions w
 
 ### Run the UI
 
-1. cd caco/ui (in a new terminal)
-2. npm install
-3. npm run serve (serve and support hot-reload)
-4. View the UI by visiting <http://localhost:8080/>
+1. Install NodeJS: <https://nodejs.org>
+2. cd caco/ui (in a new terminal)
+3. npm install
+4. npm run serve (serve and support hot-reload)
+5. View the UI by visiting <http://localhost:8080/>
 
 ## Code structure API
 
